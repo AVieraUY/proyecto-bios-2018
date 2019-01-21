@@ -18,6 +18,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar una dirección válida.");
                 _direccionEntrega = value;
             }
         }
@@ -30,6 +33,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Length < 3 || value.StartsWith("09")) || (value.StartsWith("2")) || (value.StartsWith("4")))
+                    throw new Exception("Debe ingresar un teléfono válido.");
                 _telefono = value;
             }
         }

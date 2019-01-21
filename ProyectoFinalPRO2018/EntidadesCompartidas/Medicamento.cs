@@ -33,6 +33,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value <= 0)
+                    throw new Exception("Debe ingresar un código válido.");
                 _codigo = value;
             }
         }
@@ -45,6 +47,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar un nombre válido.");
                 _nombre = value;
             }
         }
@@ -57,6 +62,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar una descripción válida.");
                 _descripcion = value;
             }
         }
@@ -69,6 +77,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value <= 0)
+                    throw new Exception("Debe ingresar un precio válido.");
                 _precio = value;
             }
         }

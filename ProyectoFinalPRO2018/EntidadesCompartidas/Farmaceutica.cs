@@ -20,6 +20,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                string rutStr = value.ToString();
+                if ((rutStr.Length < 12) || (value == 0))
+                    throw new Exception("Debe ingresar un RUT válido.");
                 _ruc = value;
             }
         }
@@ -32,6 +35,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar un nombre válido.");
                 _nombre = value;
             }
         }
@@ -44,6 +50,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Length < 3) || !(value.Contains("@")) || !(value.Contains(".")))
+                    throw new Exception("Debe ingresar un correo válido.");
                 _correo = value;
             }
         }
@@ -56,6 +65,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar una dirección válida.");
                 _direccion = value;
             }
         }

@@ -19,6 +19,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if (value.Equals(String.Empty) || value.Length < 3)
+                    throw new Exception("Debe ingresar un nombre de usuario válido.");
                 _username = value;
             }
         }
@@ -31,6 +34,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar una contraseña válida.");
                 _password = value;
             }
         }
@@ -43,6 +49,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar el nombre completo.");
                 _nombreCompleto = value;
             }
         }

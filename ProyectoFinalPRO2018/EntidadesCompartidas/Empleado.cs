@@ -8,8 +8,8 @@ namespace EntidadesCompartidas
     public class Empleado: Usuario
     {
         private string _horarioTrabajo;
-        private string _horaInicio;
-        private string _horaFin;
+        private TimeSpan _horaInicio;
+        private TimeSpan _horaFin;
 
         public string HorarioTrabajo
         {
@@ -23,7 +23,7 @@ namespace EntidadesCompartidas
             }
         }
 
-        public string HoraInicio
+        public TimeSpan HoraInicio
         {
             get
             {
@@ -31,11 +31,13 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if ((value.Hours < 0 || value.Hours > 23) || value.Minutes < 0 || value.Minutes > 59)
+                    throw new Exception("Debe ingresar una hora de ingreso válida.");
                 _horaInicio = value;
             }
         }
 
-        public string HoraFin
+        public TimeSpan HoraFin
         {
             get
             {
@@ -43,11 +45,13 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if ((value.Hours < 0 || value.Hours > 23) || value.Minutes < 0 || value.Minutes > 59)
+                    throw new Exception("Debe ingresar una hora de salida válida.");
                 _horaFin = value;
             }
         }
 
-        public Empleado(string pUsername, string pPassword, string pNombreCompleto, string pHorarioTrabajo, string pHoraInicio, string pHoraFin)
+        public Empleado(string pUsername, string pPassword, string pNombreCompleto, string pHorarioTrabajo, TimeSpan pHoraInicio, TimeSpan pHoraFin)
             : base(pUsername, pPassword, pNombreCompleto)
         {
             HorarioTrabajo = pHorarioTrabajo;
@@ -57,7 +61,7 @@ namespace EntidadesCompartidas
 
         public override string ToString()
         {
-            return base.ToString() + "\nHorario de trabajo: " + HorarioTrabajo + "\nHora de inicio: " + HoraInicio + "\nHora de finalización: " + HoraFin;
+            return base.ToString() + "\nHorario de trabajo: " + HorarioTrabajo + "\nHora de inicio: " + HoraInicio.ToString() + "\nHora de finalización: " + HoraFin.ToString();
         }
     }
 }

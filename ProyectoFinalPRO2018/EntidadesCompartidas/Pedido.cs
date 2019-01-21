@@ -57,6 +57,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value <= 0)
+                    throw new Exception("Debe ingresar una cantidad válida.");
                 _cantidad = value;
             }
         }
