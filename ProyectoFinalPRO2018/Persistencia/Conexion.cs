@@ -9,7 +9,7 @@ namespace Persistencia
 {
     class Conexion
     {
-        static string connectionString = "Server=DESKTOP-O63HRQF\\SQLEXPRESS;Database=Obligatorio;Trusted_Connection=True;";
+        static string connectionString = "Server=DESKTOP-O63HRQF\\SQLEXPRESS;Database=Proyecto;Trusted_Connection=True;";
         public static SqlConnection cnn = null;
 
         public static void Conectar()
