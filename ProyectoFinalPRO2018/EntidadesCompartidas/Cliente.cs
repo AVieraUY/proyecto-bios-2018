@@ -40,8 +40,8 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Cliente(string pUsername, string pPassword, string pNombreCompleto, string pDireccionEntrega, string pTelefono)
-            :base(pUsername, pPassword, pNombreCompleto)
+        public Cliente(string pUsername, string pPassword, string pNombre, string pApellido, string pDireccionEntrega, string pTelefono)
+            :base(pUsername, pPassword, pNombre, pApellido)
         {
             DireccionEntrega = pDireccionEntrega;
             Telefono = pTelefono;

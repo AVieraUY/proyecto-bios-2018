@@ -7,7 +7,8 @@ using Persistencia;
 
 namespace Negocio
 {
-    class negUsuario
+    public class negUsuario
     {
+
     }
 }

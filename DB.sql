@@ -25,7 +25,8 @@ create table Usuario(
 userName varchar(20) primary key,
 nombre varchar(20) not null,
 apellido varchar(20) not null,
-pass varchar(20) not null
+pass varchar(20) not null,
+tipo smallint not null constraint check(tipo IN (1, 2)))
 )
 go
 
@@ -220,13 +221,13 @@ go
 --Empleado
 Create proc AgregarEmpleado
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
-@horaInicio time,  @horaFin time
+@horaInicio time,  @horaFin time, @tipo smallint
 as
 if (exists (select * from  Usuario  where userName = @userName))
 return -1 --ya  esta creado
 begin try
 begin tran
-insert into Usuario Values(@userName,@nombre,@apellido,@pass)
+insert into Usuario Values(@userName,@nombre,@apellido,@pass, @tipo)
 insert into Empleado values(@userName,@horaInicio,@horaFin)
 commit tran
 return 1
@@ -286,13 +287,13 @@ go
 
 create proc AgregarCliente
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
-@direccion varchar,  @telefono varchar
+@direccion varchar,  @telefono varchar, @tipo smallint
 as
 if (exists (select * from  Usuario  where userName = @userName))
 return -1 --ya  esta creado
 begin try
 begin tran
-insert into Usuario Values(@userName,@nombre,@apellido,@pass)
+insert into Usuario Values(@userName,@nombre,@apellido,@pass, @tipo)
 insert into Cliente values(@userName,@direccion,@telefono)
 commit tran
 return 1
@@ -385,4 +386,14 @@ create proc EstadoPedido
 @num int
 as
 select estado from Pedido where numero = @num
+go
+
+create proc Login
+@userName varchar(20)
+@password varchar(20)
+as
+select *
+from Usuario u
+where @userName = u.userName
+and @pass = u.pass
 go

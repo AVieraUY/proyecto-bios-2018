@@ -21,6 +21,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value == null)
+                    throw new Exception("Error de capa 8.");
                 _farmaceutica = value;
             }
         }

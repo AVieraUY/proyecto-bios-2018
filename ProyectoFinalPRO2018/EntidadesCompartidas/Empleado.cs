@@ -19,6 +19,9 @@ namespace EntidadesCompartidas
             }
             set
             {
+                value = value.Trim();
+                if (String.IsNullOrEmpty(value))
+                    throw new Exception("Error de capa 8.");
                 _horarioTrabajo = value;
             }
         }
@@ -51,10 +54,10 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Empleado(string pUsername, string pPassword, string pNombreCompleto, string pHorarioTrabajo, TimeSpan pHoraInicio, TimeSpan pHoraFin)
-            : base(pUsername, pPassword, pNombreCompleto)
+        public Empleado(string pUsername, string pPassword, string pNombre, string pApellido, TimeSpan pHoraInicio, TimeSpan pHoraFin)
+            : base(pUsername, pPassword, pNombre, pApellido)
         {
-            HorarioTrabajo = pHorarioTrabajo;
+            HorarioTrabajo = "De " + pHoraInicio.ToString() + " a " + pHoraFin.ToString();
             HoraInicio = pHoraInicio;
             HoraFin = pHoraFin;
         }

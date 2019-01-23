@@ -21,6 +21,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value < 0)
+                    throw new Exception("Error de capa 8.");
                 _numero = value;
             }
         }
@@ -33,6 +35,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value.Equals(null))
+                    throw new Exception("Error de capa 8.");
                 _cliente = value;
             }
         }
@@ -45,6 +49,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value.Equals(null))
+                    throw new Exception("Error de capa 8.");
                 _medicamento = value;
             }
         }
@@ -71,6 +77,8 @@ namespace EntidadesCompartidas
             }
             set
             {
+                if (value != 1 || value != 2 || value != 3)
+                    throw new Exception("Error de capa 8.");
                 _estado = value;
             }
         }

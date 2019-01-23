@@ -9,6 +9,8 @@ namespace EntidadesCompartidas
     {
         private string _username;
         private string _password;
+        private string _nombre;
+        private string _apellido;
         private string _nombreCompleto;
 
         public string Username
@@ -20,7 +22,7 @@ namespace EntidadesCompartidas
             set
             {
                 value = value.Trim();
-                if (value.Equals(String.Empty) || value.Length < 3)
+                if (value.Equals(String.Empty) || value.Length < 6)
                     throw new Exception("Debe ingresar un nombre de usuario válido.");
                 _username = value;
             }
@@ -35,9 +37,39 @@ namespace EntidadesCompartidas
             set
             {
                 value = value.Trim();
-                if((value.Equals(String.Empty)) || (value.Length < 3))
+                if((value.Equals(String.Empty)) || (value.Length < 6))
                     throw new Exception("Debe ingresar una contraseña válida.");
                 _password = value;
+            }
+        }
+
+        public string Nombre
+        {
+            get
+            {
+                return _nombre;
+            }
+            set
+            {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar un nombre correcto.");
+                _nombre = value;
+            }
+        }
+
+        public string Apellido
+        {
+            get
+            {
+                return _apellido;
+            }
+            set
+            {
+                value = value.Trim();
+                if ((value.Equals(String.Empty)) || (value.Length < 3))
+                    throw new Exception("Debe ingresar un apellido correcto.");
+                _apellido = value;
             }
         }
 
@@ -49,18 +81,17 @@ namespace EntidadesCompartidas
             }
             set
             {
-                value = value.Trim();
-                if ((value.Equals(String.Empty)) || (value.Length < 3))
-                    throw new Exception("Debe ingresar el nombre completo.");
-                _nombreCompleto = value;
+                _nombreCompleto = value.Trim();
             }
         }
 
-        public Usuario(string pUsername, string pPassword, string pNombreCompleto)
+        public Usuario(string pUsername, string pPassword, string pNombre, string pApellido)
         {
             Username = pUsername;
             Password = pPassword;
-            NombreCompleto = pNombreCompleto;
+            Nombre = pNombre;
+            Apellido = pApellido;
+            NombreCompleto = pNombre + " " + pApellido;
         }
 
         public override string ToString()
