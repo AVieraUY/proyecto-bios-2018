@@ -21,7 +21,7 @@ namespace EntidadesCompartidas
             {
                 value = value.Trim();
                 if (String.IsNullOrEmpty(value))
-                    throw new Exception("Error de capa 8.");
+                    throw new Exception("Error desconocido.");
                 _horarioTrabajo = value;
             }
         }
