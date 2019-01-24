@@ -17,7 +17,7 @@ namespace Persistencia
             SqlCommand cmd = new SqlCommand("AltaMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Farmaceutica.Ruc));
+            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Ruc));
             cmd.Parameters.Add(new SqlParameter("codigo", pMedicamento.Codigo));
             cmd.Parameters.Add(new SqlParameter("nombre", pMedicamento.Nombre));
             cmd.Parameters.Add(new SqlParameter("descipcion", pMedicamento.Descripcion));
@@ -70,11 +70,10 @@ namespace Persistencia
             SqlDataReader dr = cmd.ExecuteReader();
 
             Medicamento m = null;
-            Farmaceutica f = null;
 
             while(dr.Read())
             {
-                m = new Medicamento(f, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+                m = new Medicamento(Convert.ToInt32(dr["rut"].ToString()), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
             }
 
             Conexion.Desconectar();
@@ -89,7 +88,7 @@ namespace Persistencia
             SqlCommand cmd = new SqlCommand("ModificarMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Farmaceutica.Ruc));
+            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Ruc));
             cmd.Parameters.Add(new SqlParameter("codigo", pMedicamento.Codigo));
             cmd.Parameters.Add(new SqlParameter("nombre", pMedicamento.Nombre));
             cmd.Parameters.Add(new SqlParameter("descipcion", pMedicamento.Descripcion));
@@ -120,8 +119,7 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                Farmaceutica f = null;
-                Medicamento m = new Medicamento(f, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+                Medicamento m = new Medicamento(Convert.ToInt32(dr["rut"].ToString()), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
                 lista.Add(m);
             }
 

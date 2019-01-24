@@ -8,8 +8,8 @@ namespace EntidadesCompartidas
     public class Pedido
     {
         private int _numero;
-        private Cliente _cliente;
-        private Medicamento _medicamento;
+        private string _username;
+        private int _codigo;
         private int _cantidad;
         private byte _estado;
 
@@ -27,31 +27,32 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Cliente Cliente
+        public string Username
         {
             get
             {
-                return _cliente;
+                return _username;
             }
             set
             {
-                if (value.Equals(null))
-                    throw new Exception("Error desconocido.");
-                _cliente = value;
+                value = value.Trim();
+                if (value.Equals(String.Empty) || value.Length < 6)
+                    throw new Exception("Debe ingresar un nombre de usuario válido.");
+                _username = value;
             }
         }
 
-        public Medicamento Medicamento
+        public int Codigo
         {
             get
             {
-                return _medicamento;
+                return _codigo;
             }
             set
             {
-                if (value.Equals(null))
-                    throw new Exception("Error desconocido.");
-                _medicamento = value;
+                if (value <= 0)
+                    throw new Exception("Debe ingresar un código válido.");
+                _codigo = value;
             }
         }
 
@@ -83,18 +84,18 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Pedido(int pNumero, Cliente pCliente, Medicamento pMedicamento, int pCantidad, byte pEstado)
+        public Pedido(int pNumero, string pUsername, int pCodigo, int pCantidad, byte pEstado)
         {
             Numero = pNumero;
-            Cliente = pCliente;
-            Medicamento = pMedicamento;
+            Username = pUsername;
+            Codigo = pCodigo;
             Cantidad = pCantidad;
             Estado = pEstado;
         }
 
         public override string ToString()
         {
-            return "Número: " + Numero + "\nCliente: " + Cliente.NombreCompleto + "\nMedicamento: " + Medicamento.Nombre + "\nCantidad: " + Cantidad + "\nEstado: " + Estado;
+            return "Número: " + Numero + "\nCliente: " + Username + "\nMedicamento: " + Codigo + "\nCantidad: " + Cantidad + "\nEstado: " + Estado;
         }
     }
 }
