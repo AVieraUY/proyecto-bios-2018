@@ -127,5 +127,29 @@ namespace Persistencia
 
             return lista;
         }
+
+        public List<Medicamento> ListarPorFarmaceutica(int pRuc)
+        {
+            List<Medicamento> lista = new List<Medicamento>();
+
+            Conexion.Conectar();
+
+            SqlCommand cmd = new SqlCommand("MedicamentosxFarmaceutica", Conexion.cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("rut", pRuc));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while(dr.Read())
+            {
+                Medicamento m = new Medicamento(Convert.ToInt32(dr["rut"].ToString()), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+                lista.Add(m);
+            }
+
+            Conexion.Desconectar();
+
+            return lista;
+        }
     }
 }
