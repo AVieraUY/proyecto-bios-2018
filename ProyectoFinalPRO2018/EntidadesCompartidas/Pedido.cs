@@ -7,38 +7,37 @@ namespace EntidadesCompartidas
 {
     public class Pedido
     {
-        private int _numero;
-        private string _username;
+        private Medicamento _medicamento;
+        private Cliente _cliente;
         private int _codigo;
         private int _cantidad;
         private byte _estado;
 
-        public int Numero
+        public Medicamento Medicamento
         {
             get
             {
-                return _numero;
+                return _medicamento;
             }
             set
             {
-                if (value < 0)
+                if (value.Equals(null))
                     throw new Exception("Error desconocido.");
-                _numero = value;
+                _medicamento = value;
             }
         }
 
-        public string Username
+        public Cliente Cliente
         {
             get
             {
-                return _username;
+                return _cliente;
             }
             set
             {
-                value = value.Trim();
-                if (value.Equals(String.Empty) || value.Length < 6)
-                    throw new Exception("Debe ingresar un nombre de usuario válido.");
-                _username = value;
+                if (value.Equals(null))
+                    throw new Exception("Error desconocido.");
+                _cliente = value;
             }
         }
 
@@ -84,10 +83,10 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Pedido(int pNumero, string pUsername, int pCodigo, int pCantidad, byte pEstado)
+        public Pedido(Medicamento pMedicamento, Cliente pCliente, int pCodigo, int pCantidad, byte pEstado)
         {
-            Numero = pNumero;
-            Username = pUsername;
+            Medicamento = pMedicamento;
+            Cliente = pCliente;
             Codigo = pCodigo;
             Cantidad = pCantidad;
             Estado = pEstado;
@@ -95,7 +94,7 @@ namespace EntidadesCompartidas
 
         public override string ToString()
         {
-            return "Número: " + Numero + "\nCliente: " + Username + "\nMedicamento: " + Codigo + "\nCantidad: " + Cantidad + "\nEstado: " + Estado;
+            return "Medicamento: " + Medicamento.Nombre + "\nCliente: " + Cliente.NombreCompleto + "\nMedicamento: " + Codigo + "\nCantidad: " + Cantidad + "\nEstado: " + Estado;
         }
     }
 }

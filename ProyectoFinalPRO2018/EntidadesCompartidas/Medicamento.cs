@@ -7,24 +7,23 @@ namespace EntidadesCompartidas
 {
     public class Medicamento
     {
-        private int _ruc;
+        private Farmaceutica _farmaceutica;
         private int _codigo;
         private string _nombre;
         private string _descripcion;
         private decimal _precio;
 
-        public int Ruc
+        public Farmaceutica Farmaceutica
         {
             get
             {
-                return _ruc;
+                return _farmaceutica;
             }
             set
             {
-                string rutStr = value.ToString();
-                if ((rutStr.Length < 12) || (value == 0))
-                    throw new Exception("Debe ingresar un RUT válido.");
-                _ruc = value;
+                if (value.Equals(null))
+                    throw new Exception("Error desconocido.");
+                _farmaceutica = value;
             }
         }
 
@@ -86,9 +85,9 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Medicamento(int pRuc, int pCodigo, string pNombre, string pDescripcion, decimal pPrecio)
+        public Medicamento(Farmaceutica pFarmaceutica, int pCodigo, string pNombre, string pDescripcion, decimal pPrecio)
         {
-            Ruc = pRuc;
+            Farmaceutica = pFarmaceutica;
             Codigo = pCodigo;
             Nombre = pNombre;
             Descripcion = pDescripcion;
@@ -97,7 +96,7 @@ namespace EntidadesCompartidas
 
         public override string ToString()
         {
-            return "Farmaceutica: " + Ruc + "\nCódigo: " + Codigo + "\nNombre: " + Nombre + "\nDescripción: " + Descripcion + "\nPrecio: " + Precio;
+            return "Farmaceutica: " + Farmaceutica.Ruc + "\nCódigo: " + Codigo + "\nNombre: " + Nombre + "\nDescripción: " + Descripcion + "\nPrecio: " + Precio;
         }
     }
 }

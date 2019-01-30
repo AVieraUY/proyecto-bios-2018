@@ -32,11 +32,11 @@ namespace Negocio
             }
         }
 
-        public void Baja(int pRuc, int pCodigo)
+        public void Baja(Farmaceutica pFarmaceutica, int pCodigo)
         {
             perMedicamento pm = new perMedicamento();
 
-            int r = pm.Baja(pRuc, pCodigo);
+            int r = pm.Baja(pFarmaceutica, pCodigo);
 
             switch(r)
             {
@@ -55,11 +55,11 @@ namespace Negocio
             }
         }
 
-        public Medicamento Buscar(int pRuc, int pCodigo)
+        public Medicamento Buscar(Farmaceutica pFarmaceutica, int pCodigo)
         {
             perMedicamento pm = new perMedicamento();
 
-            Medicamento m = pm.Buscar(pRuc, pCodigo);
+            Medicamento m = pm.Buscar(pFarmaceutica, pCodigo);
 
             if (m.Equals(null))
                 throw new Exception("No existe el medicamento.");
@@ -97,11 +97,11 @@ namespace Negocio
             return pm.Listar();
         }
 
-        public List<Medicamento> ListarPorFarmaceutica(int pRuc)
+        public List<Medicamento> ListarPorFarmaceutica(Farmaceutica pFarmaceutica)
         {
             perMedicamento pm = new perMedicamento();
 
-            return pm.ListarPorFarmaceutica(pRuc);
+            return pm.ListarPorFarmaceutica(pFarmaceutica);
         }
     }
 }

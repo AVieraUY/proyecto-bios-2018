@@ -17,7 +17,7 @@ namespace Persistencia
             SqlCommand cmd = new SqlCommand("AltaMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Ruc));
+            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Farmaceutica.Ruc));
             cmd.Parameters.Add(new SqlParameter("codigo", pMedicamento.Codigo));
             cmd.Parameters.Add(new SqlParameter("nombre", pMedicamento.Nombre));
             cmd.Parameters.Add(new SqlParameter("descipcion", pMedicamento.Descripcion));
@@ -35,14 +35,14 @@ namespace Persistencia
             return Convert.ToInt32(r.Value);
         }
 
-        public int Baja(int pRuc, int pCodigo)
+        public int Baja(Farmaceutica pFarmaceutica, int pCodigo)
         {
             Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("EliminarMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("rut", pRuc));
+            cmd.Parameters.Add(new SqlParameter("rut", pFarmaceutica.Ruc));
             cmd.Parameters.Add(new SqlParameter("codigo", pCodigo));
 
             SqlParameter r = new SqlParameter();
@@ -57,23 +57,25 @@ namespace Persistencia
             return Convert.ToInt32(r.Value);
         }
 
-        public Medicamento Buscar(int pRuc, int pCodigo)
+        public Medicamento Buscar(Farmaceutica pFarmaceutica, int pCodigo)
         {
             Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("BuscarMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("rut", pRuc));
+            cmd.Parameters.Add(new SqlParameter("rut", pFarmaceutica.Ruc));
             cmd.Parameters.Add(new SqlParameter("codigo", pCodigo));
 
             SqlDataReader dr = cmd.ExecuteReader();
 
             Medicamento m = null;
+            Farmaceutica f = null;
 
             while(dr.Read())
             {
-                m = new Medicamento(Convert.ToInt32(dr["rut"].ToString()), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+                f = new Farmaceutica(Convert.ToInt32(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
+                m = new Medicamento(f, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
             }
 
             Conexion.Desconectar();
@@ -88,7 +90,7 @@ namespace Persistencia
             SqlCommand cmd = new SqlCommand("ModificarMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Ruc));
+            cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Farmaceutica.Ruc));
             cmd.Parameters.Add(new SqlParameter("codigo", pMedicamento.Codigo));
             cmd.Parameters.Add(new SqlParameter("nombre", pMedicamento.Nombre));
             cmd.Parameters.Add(new SqlParameter("descipcion", pMedicamento.Descripcion));
@@ -119,7 +121,8 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                Medicamento m = new Medicamento(Convert.ToInt32(dr["rut"].ToString()), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+                Farmaceutica f = new Farmaceutica(Convert.ToInt32(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
+                Medicamento m = new Medicamento(f, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
                 lista.Add(m);
             }
 
@@ -128,7 +131,7 @@ namespace Persistencia
             return lista;
         }
 
-        public List<Medicamento> ListarPorFarmaceutica(int pRuc)
+        public List<Medicamento> ListarPorFarmaceutica(Farmaceutica pFarmaceutica)
         {
             List<Medicamento> lista = new List<Medicamento>();
 
@@ -137,13 +140,14 @@ namespace Persistencia
             SqlCommand cmd = new SqlCommand("MedicamentosxFarmaceutica", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("rut", pRuc));
+            cmd.Parameters.Add(new SqlParameter("rut", pFarmaceutica.Ruc));
 
             SqlDataReader dr = cmd.ExecuteReader();
 
             while(dr.Read())
             {
-                Medicamento m = new Medicamento(Convert.ToInt32(dr["rut"].ToString()), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+                Farmaceutica f = new Farmaceutica(Convert.ToInt32(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
+                Medicamento m = new Medicamento(f, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
                 lista.Add(m);
             }
 

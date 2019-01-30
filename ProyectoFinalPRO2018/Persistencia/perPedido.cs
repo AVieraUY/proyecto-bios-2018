@@ -8,7 +8,7 @@ using EntidadesCompartidas;
 
 namespace Persistencia
 {
-    class perPedido
+    public class perPedido
     {
     }
 }
