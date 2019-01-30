@@ -81,5 +81,29 @@ namespace Persistencia
 
             return Convert.ToInt32(r.Value);
         }
+
+        public Empleado Login(string pUsername, string pPassword)
+        {
+            Conexion.Conectar();
+
+            SqlCommand cmd = new SqlCommand("LoginEmpleado", Conexion.cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("username", pUsername));
+            cmd.Parameters.Add(new SqlParameter("password", pPassword));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            Empleado e = null;
+
+            while(dr.Read())
+            {
+                e = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), (TimeSpan)(dr["horaInicio"]), (TimeSpan)(dr["horaFin"]));
+            }
+
+            Conexion.Desconectar();
+
+            return e;
+        }
     }
 }

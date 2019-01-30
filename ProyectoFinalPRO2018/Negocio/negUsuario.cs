@@ -147,10 +147,25 @@ namespace Negocio
             }
         }
 
-        public DataTable Login(string pUsername, string pPassword)
+        public Usuario Login(string pUsername, string pPassword)
         {
-            perUsuario pu = new perUsuario();
-            return pu.Login(pUsername, pPassword);
+            Usuario u = null;
+
+            perCliente pc = new perCliente();
+
+            u = pc.Login(pUsername, pPassword);
+
+            if (u.Equals(null))
+            {
+                perEmpleado pe = new perEmpleado();
+
+                u = pe.Login(pUsername, pPassword);
+
+                if (u.Equals(null))
+                    throw new Exception("Usuario y/o contraseña incorrectos.");
+            }
+
+            return u;
         }
     }
 }
