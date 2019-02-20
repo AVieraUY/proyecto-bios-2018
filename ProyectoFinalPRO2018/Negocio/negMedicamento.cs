@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class negMedicamento
     {
-        public void Alta(Medicamento pMedicamento)
+        public static void Alta(Medicamento pMedicamento)
         {
             perMedicamento pm = new perMedicamento();
 
@@ -21,7 +21,7 @@ namespace Negocio
                     {
                         throw new Exception("Ya existe el medicamento.");
                     }
-                case 0:
+                case 1:
                     {
                         break;
                     }
@@ -32,11 +32,11 @@ namespace Negocio
             }
         }
 
-        public void Baja(Farmaceutica pFarmaceutica, int pCodigo)
+        public static void Baja(Medicamento pMedicamento)
         {
             perMedicamento pm = new perMedicamento();
 
-            int r = pm.Baja(pFarmaceutica, pCodigo);
+            int r = pm.Baja(pMedicamento);
 
             switch(r)
             {
@@ -44,7 +44,7 @@ namespace Negocio
                     {
                         throw new Exception("No existe el medicamento.");
                     }
-                case 0:
+                case 1:
                     {
                         break;
                     }
@@ -55,19 +55,19 @@ namespace Negocio
             }
         }
 
-        public Medicamento Buscar(Farmaceutica pFarmaceutica, int pCodigo)
+        public static Medicamento Buscar(Farmaceutica pFarmaceutica, int pCodigo)
         {
             perMedicamento pm = new perMedicamento();
 
             Medicamento m = pm.Buscar(pFarmaceutica, pCodigo);
 
-            if (m.Equals(null))
-                throw new Exception("No existe el medicamento.");
+           // if (m.Equals(null))
+          //      throw new Exception("No existe el medicamento, complete los datos para registrar uno nuevo.");
 
             return m;
         }
 
-        public void Modificacion(Medicamento pMedicamento)
+        public static void Modificacion(Medicamento pMedicamento)
         {
             perMedicamento pm = new perMedicamento();
 
@@ -79,7 +79,7 @@ namespace Negocio
                     {
                         throw new Exception("No existe el medicamento.");
                     }
-                case 0:
+                case 1:
                     {
                         break;
                     }
@@ -90,14 +90,14 @@ namespace Negocio
             }
         }
 
-        public List<Medicamento> Listar()
+        public static List<Medicamento> Listar()
         {
             perMedicamento pm = new perMedicamento();
 
             return pm.Listar();
         }
 
-        public List<Medicamento> ListarPorFarmaceutica(Farmaceutica pFarmaceutica)
+        public static List<Medicamento> ListarPorFarmaceutica(Farmaceutica pFarmaceutica)
         {
             perMedicamento pm = new perMedicamento();
 

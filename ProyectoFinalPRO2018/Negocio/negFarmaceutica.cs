@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class negFarmaceutica
     {
-        public void Alta(Farmaceutica pFarmaceutica)
+        public static void Alta(Farmaceutica pFarmaceutica)
         {
             perFarmaceutica pf = new perFarmaceutica();
 
@@ -21,7 +21,7 @@ namespace Negocio
                     {
                         throw new Exception("Ya existe la farmacéutica.");
                     }
-                case 0:
+                case  1:
                     {
                         break;
                     }
@@ -32,7 +32,7 @@ namespace Negocio
             }
         }
 
-        public void Baja(int pRuc)
+        public static void Baja(long pRuc)
         {
             perFarmaceutica pf = new perFarmaceutica();
 
@@ -44,7 +44,11 @@ namespace Negocio
                     {
                         throw new Exception("No existe la farmacéutica.");
                     }
-                case 0:
+                case -2:
+                    {
+                        throw new Exception("No es posible eliminar ya que tiene pedidos asociados.");
+                    }
+                case 1:
                     {
                         break;
                     }
@@ -55,19 +59,21 @@ namespace Negocio
             }
         }
 
-        public Farmaceutica Buscar(int pRuc)
+        public static Farmaceutica Buscar(long pRuc)
         {
-            perFarmaceutica pf = new perFarmaceutica();
+           //perFarmaceutica pf = new perFarmaceutica();
 
-            Farmaceutica f = pf.Buscar(pRuc);
 
-            if (f.Equals(null))
-                throw new Exception("No existe la farmacéutica.");
+           // Farmaceutica f = pf.Buscar(pRuc);
+            Farmaceutica f = perFarmaceutica.Buscar(pRuc);
+
+            //if (f == null)
+            //    throw new Exception("No existe la farmacéutica.");
 
             return f;
         }
 
-        public void Modificacion(Farmaceutica pFarmaceutica)
+        public static void Modificacion(Farmaceutica pFarmaceutica)
         {
             perFarmaceutica pf = new perFarmaceutica();
 
@@ -79,7 +85,7 @@ namespace Negocio
                     {
                         throw new Exception("No existe la farmacéutica.");
                     }
-                case 0:
+                case 1:
                     {
                         break;
                     }

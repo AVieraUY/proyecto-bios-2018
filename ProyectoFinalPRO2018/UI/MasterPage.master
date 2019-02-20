@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <br />
+        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+            <Items>
+                <asp:MenuItem Text="Mantenimiento" Value="Mantenimiento">
+                    <asp:MenuItem Text="Empleados" Value="Empleados" 
+                        NavigateUrl="~/ABMEmpleados.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Farmacéuticas" Value="Farmacéuticas" 
+                        NavigateUrl="~/ABMFarmacéuticas.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Medicamentos" Value="Medicamentos" 
+                        NavigateUrl="~/ABMMedicamentos.aspx"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Text="Pedido" Value="Pedido">
+                    <asp:MenuItem Text="Cambiar Estado" Value="Cambiar Estado" 
+                        NavigateUrl="~/CambioEstadoPedido.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Consultar Estado" Value="Consultar Estado" 
+                        NavigateUrl="~/ConsultaEstadoPedido.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Rrealizar Pedido" Value="Rrealizar Pedido" 
+                        NavigateUrl="~/RealizarPedido.aspx"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Text="Listados" Value="Listados">
+                    <asp:MenuItem Text="Medicamentos y Pedidos" Value="Medicamentos y Pedidos">
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Pedidos Generados" Value="Pedidos Generados"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente"></asp:MenuItem>
+            </Items>
+        </asp:Menu>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+            <p>
+            </p>
+        
+        </asp:ContentPlaceHolder>
+        <br />
+    </div>
+    </form>
+</body>
+</html>

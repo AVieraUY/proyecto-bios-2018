@@ -5,20 +5,19 @@ use ObligatorioPrimero
 create table Farmaceutica(
 rut bigint primary key,
 nombre varchar (30) not null,
-mail varchar(30),
-direccion varchar (50)
+mail varchar(30) not null,
+direccion varchar (50) not null
 )
 go
 create table Medicamento (
 codigo int not null,
 rut bigint  not null,
 nombre varchar (20) not null,
-descipcion varchar(255),
+descipcion varchar(255) not null,
 precio money not null,
 foreign key(rut) references farmaceutica (rut),
 primary key(codigo, rut)
 )
-
 go
 
 create table Usuario(
@@ -26,8 +25,8 @@ userName varchar(20) primary key,
 nombre varchar(20) not null,
 apellido varchar(20) not null,
 pass varchar(20) not null,
-tipo smallint not null constraint check(tipo IN (1, 2)))
-)
+tipo smallint not null)-- constraint check(tipo IN (1, 2)))
+--)
 go
 
 
@@ -60,14 +59,15 @@ foreign key (userName) references Cliente (userName),
 foreign key (codMedicamento,rut) references Medicamento (codigo,rut)
 )
 go
---datos de prueba
-insert into Farmaceutica values(123456789012,'Bayer','bayer@bayer.com',null)
-insert into Farmaceutica values(111111111111,'Pharmaton','ventas@Pharmaton.com',null)
-insert into Farmaceutica values(987654321012,'Roemmers',null,null)
-insert into Farmaceutica values(999999999999,'Otra',null,'18 de julio y Ejido')
 
-insert into Medicamento values(1,123456789012,'aspirina',null,150)
-insert into Medicamento values(2,123456789012,'Redoxon',null,350)
+--datos de prueba
+insert into Farmaceutica values(123456789012,'Bayer','bayer@bayer.com', 'Soriano 1821')
+insert into Farmaceutica values(111111111111,'Pharmaton','ventas@Pharmaton.com', 'Canelones 2120')
+insert into Farmaceutica values(987654321012,'Roemmers', 'somosRoemmers@roemmeanos.com', 'Colonia 1999')
+insert into Farmaceutica values(999999999999,'Otra', 'juanPerez@misterioso.com','18 de julio y Ejido')
+
+insert into Medicamento values(1,123456789012,'aspirina','Fórmula mejorada',150)
+insert into Medicamento values(2,123456789012,'Redoxon', 'Aprobada por el ISN',350)
 insert into Medicamento values(6,123456789012,'Supradyn','Complete multivitamin and multi mineral formula',250)
 insert into Medicamento values(2,111111111111,'Pharmaton Complex','ginseng G115',500) 
 insert into Medicamento values(1,999999999999,'remedio','para dolores musculares',500) 
@@ -78,7 +78,7 @@ insert into Usuario values('usuario','user','Empleado','pwd')
 insert into Usuario values('empleado','Empleado','test','pwd')
 insert into Usuario values('cliente','Cliente','test','pwd')
 insert into Usuario values('aviera','Agustin','Viera','123456')
-insert into Usuario values('agunz','Abril','Gunz','123456')
+insert into Usuario values('aganz','Abril','Ganz','123456')
 insert into Usuario values('dgonzalez','Diego','Gonzalez','123456')
 
 insert into Empleado values('usuario','09:00','18:00')
@@ -86,7 +86,7 @@ insert into Empleado values('empleado','12:00','18:00')
 
 insert into Cliente values('cliente','Bv. Artigas','099123456')
 insert into Cliente values('aviera','Maldonado','098654321')
-insert into Cliente values('agunz','18 de julio','26221324')
+insert into Cliente values('aganz','18 de julio','26221324')
 insert into Cliente values('dgonzalez','Rivera','099456789')
 
 insert into Pedido values(1,123456789012,'agunz',5,'Entregado')
@@ -96,12 +96,12 @@ insert into Pedido values(2,111111111111,'cliente',3,'Entregado')
 go
 --Farmaceutica
 create proc AltaFarmaceutica
-@rut bigint, @nombre varchar, @mail varchar, @direccion varchar
+@rut bigint, @nombre varchar(30), @mail varchar(30), @direccion varchar (50)
 as
 if(exists(select * from Farmaceutica where rut = @rut))
 return -1 --ya existe
 begin try
-insert into Farmaceutica values(@rut,@nombre,@mail,@direccion)
+insert into Farmaceutica values(@rut, @nombre, @mail, @direccion)
 return 1
 end try
 begin catch
@@ -110,7 +110,7 @@ end catch
 go
 
 create proc ModificarFarmaceutica
-@rut bigint, @nombre varchar, @mail varchar, @direccion varchar
+@rut bigint, @nombre varchar(30), @mail varchar(30), @direccion varchar(50)
 as
 if (not exists (select * from  Farmaceutica  where rut = @rut))
 return -1
@@ -127,12 +127,13 @@ create proc EliminarFarmaceutica
 as
 if (not exists (select * from  Farmaceutica  where rut = @rut))
 return -1-- no existe
-if (not exists (select * from Pedido where rut = @rut))
+if (exists (select * from Pedido where rut = @rut))
 return -2-- tiene pedidos
 begin try
 begin tran
 delete Medicamento where rut = @rut
 delete Farmaceutica where rut = @rut
+commit tran
 return 1
 end try
 begin catch
@@ -147,6 +148,8 @@ as
 select * from Farmaceutica where rut = @rut;
 go
 
+select * from Farmaceutica
+go
 create proc ListarFarmaceuticas
 as
 select nombre from Farmaceutica
@@ -154,7 +157,7 @@ go
 
 --Medicamento
 create proc ModificarMedicamento
-@rut bigint, @codigo int, @nombre varchar, @descipcion varchar, @precio money
+@rut bigint, @codigo int, @nombre varchar(20), @descipcion varchar(255), @precio money
 as
 if( not exists(select * from Medicamento where rut = @rut and codigo = @codigo))
 return -1 --no existe
@@ -168,7 +171,7 @@ end catch
 go
 
 create proc AltaMedicamento
-@rut bigint, @codigo int, @nombre varchar, @descipcion varchar, @precio money
+@rut bigint, @codigo int, @nombre varchar(20), @descipcion varchar(255), @precio money
 as
 if( exists(select * from Medicamento where rut = @rut and codigo = @codigo))
 return -1 --ya existe
@@ -183,10 +186,12 @@ return -3
 end catch
 go
 
+select * from Medicamento
+go
 create proc BuscarMedicamento
 @rut bigint, @codigo int
 as
-select *  from  Medicamento where rut = @rut and codigo = @codigo;
+select *  from  Medicamento where descipcion = @rut and codigo = @codigo;
 go
 
 create proc EliminarMedicamento
@@ -245,7 +250,6 @@ if (exists (select * from Cliente where userName = @userName))
 return -1 --Es cliente.
 select * from  Empleado where userName = @userName
 go
-
 create proc ModificarEmpleado
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
 @horaInicio time,  @horaFin time
@@ -309,7 +313,7 @@ go
 create proc AltaPedido
 @codMedicamento int , @rut bigint, @userName varchar(20), @cantidad int
 as
-if (not exists (select * from Cliente userName = @userName))
+if (not exists (select * from Cliente where userName = @userName))
 return -1
 if (not exists (select * from Medicamento where codigo = @codMedicamento and rut = @rut))
 return -2
@@ -372,7 +376,7 @@ else if (@estado = 1)
 select * from Pedido where estado ='generado' order by numero
 else if (@estado = 2)
 select * from Pedido where estado ='entregado' order by numero
-else if (@estado =3)
+else if (@estado = 3)
 select * from pedido where  estado = 'generado' or  estado = 'enviado' order by numero
 go
 

@@ -7,12 +7,12 @@ namespace EntidadesCompartidas
 {
     public class Farmaceutica
     {
-        private int _ruc;
+        private long _ruc;
         private string _nombre;
         private string _correo;
         private string _direccion;
 
-        public int Ruc
+        public long Ruc
         {
             get
             {
@@ -72,7 +72,7 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Farmaceutica(int pRuc, string pNombre, string pCorreo, string pDireccion)
+        public Farmaceutica(long pRuc, string pNombre, string pCorreo, string pDireccion)
         {
             Ruc = pRuc;
             Nombre = pNombre;

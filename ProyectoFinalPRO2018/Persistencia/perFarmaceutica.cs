@@ -21,7 +21,7 @@ namespace Persistencia
             cmd.Parameters.Add(new SqlParameter("mail", pFarmaceutica.Correo));
 
             SqlParameter r = new SqlParameter();
-            r.Direction = ParameterDirection.ReturnValue;
+            r.Direction = System.Data.ParameterDirection.ReturnValue;
 
             cmd.Parameters.Add(r);
 
@@ -32,7 +32,7 @@ namespace Persistencia
             return Convert.ToInt32(r.Value);
         }
 
-        public int Baja(int pRuc)
+        public int Baja(long pRuc)
         {
             Conexion.Conectar();
 
@@ -50,10 +50,10 @@ namespace Persistencia
 
             Conexion.Desconectar();
 
-            return Convert.ToInt32(r.Value);
+            return Convert.ToInt32(r.Value.ToString());
         }
 
-        public Farmaceutica Buscar(int pRuc)
+        public static Farmaceutica Buscar(long pRuc)
         {
             Conexion.Conectar();
 
@@ -61,16 +61,22 @@ namespace Persistencia
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pRuc));
-
+            
             SqlDataReader dr = cmd.ExecuteReader();
 
             Farmaceutica f = null;
 
             while(dr.Read())
             {
-                f = new Farmaceutica(Convert.ToInt32(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
+
+                string n = dr["nombre"].ToString();
+                string m = dr["mail"].ToString();
+                string d = dr["direccion"].ToString();
+
+                f = new Farmaceutica(pRuc, dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
             }
 
+            dr.Close();
             Conexion.Desconectar();
 
             return f;
@@ -113,10 +119,11 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                Farmaceutica objFarmaceutica = new Farmaceutica(Convert.ToInt32(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
+                Farmaceutica objFarmaceutica = new Farmaceutica(Convert.ToInt64(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
                 lista.Add(objFarmaceutica);
             }
 
+            dr.Close();
             Conexion.Desconectar();
 
             return lista;
