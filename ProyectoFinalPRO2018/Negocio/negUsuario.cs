@@ -7,7 +7,7 @@ namespace Negocio
 {
     public class negUsuario
     {
-        public void Alta(Usuario pUsuario)
+        public static void Alta(Usuario pUsuario)
         {
             if(pUsuario.GetType().Equals(typeof(Cliente)))
             {
@@ -21,7 +21,7 @@ namespace Negocio
                         {
                             throw new Exception("Ya existe el cliente.");
                         }
-                    case 0:
+                    case 1:
                         {
                             break;
                         }
@@ -55,7 +55,7 @@ namespace Negocio
             }
         }
 
-        public void Baja(string pUsername)
+        public static void Baja(string pUsername)
         {
             perUsuario pu = new perUsuario();
 
@@ -67,7 +67,7 @@ namespace Negocio
                     {
                         throw new Exception("No existe el usuario.");
                     }
-                case 0:
+                case 1:
                     {
                         break;
                     }
@@ -78,7 +78,7 @@ namespace Negocio
             }
         }
 
-        public Usuario Buscar(string pUsername)
+        public static Usuario Buscar(string pUsername)
         {
             Usuario u = null;
 
@@ -99,7 +99,7 @@ namespace Negocio
             return u;
         }
 
-        public void Modificacion(Usuario pUsuario)
+        public static void Modificacion(Usuario pUsuario)
         {
             if (pUsuario.GetType().Equals(typeof(Cliente)))
             {
@@ -113,7 +113,7 @@ namespace Negocio
                         {
                             throw new Exception("No existe el cliente.");
                         }
-                    case 0:
+                    case 1:
                         {
                             break;
                         }
@@ -147,7 +147,7 @@ namespace Negocio
             }
         }
 
-        public Usuario Login(string pUsername, string pPassword)
+        public static Usuario Login(string pUsername, string pPassword)
         {
             Usuario u = null;
 

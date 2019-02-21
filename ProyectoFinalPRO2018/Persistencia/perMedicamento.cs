@@ -70,12 +70,9 @@ namespace Persistencia
             SqlDataReader dr = cmd.ExecuteReader();
 
             Medicamento m = null;
-            //Farmaceutica f = null;
 
             while(dr.Read())
             {
-                string a = dr["descipcion"].ToString();
-                //f = new Farmaceutica(Convert.ToInt64(dr["rut"].ToString()), dr["nombre"].ToString()//, dr["mail"].ToString(), dr["direccion"].ToString());
                 m = new Medicamento(pFarmaceutica, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
             }
 
@@ -149,8 +146,7 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                Farmaceutica f = new Farmaceutica(Convert.ToInt32(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
-                Medicamento m = new Medicamento(f, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+                Medicamento m = new Medicamento(pFarmaceutica, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
                 lista.Add(m);
             }
 

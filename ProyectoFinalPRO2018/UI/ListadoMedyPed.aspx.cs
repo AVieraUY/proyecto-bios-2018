@@ -16,8 +16,8 @@ public partial class ListadoMedyPed : System.Web.UI.Page
             try
             {
                 ddl.DataSource = negFarmaceutica.Listar();
-                ddl.DataTextField = "rut";
-                ddl.DataValueField = "rut";
+                ddl.DataTextField = "nombre";
+                ddl.DataValueField = "ruc";
                 ddl.DataBind();
             }
             catch (Exception ex)
@@ -29,6 +29,32 @@ public partial class ListadoMedyPed : System.Web.UI.Page
     }
     protected void ddl_SelectedIndexChanged(object sender, EventArgs e)
     {
+        try
+        {
+            Farmaceutica f = negFarmaceutica.Buscar(Convert.ToInt64(ddl.SelectedValue));
+            Session["farmaceutica"] = f;
 
+            List<Medicamento> lm = negMedicamento.ListarPorFarmaceutica(f);
+
+            grdMedicamentos.DataSource = lm;
+            grdMedicamentos.DataBind();
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+    protected void grdMedicamentos_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
+            Medicamento m = negMedicamento.Buscar(f, Convert.ToInt32(grdMedicamentos.SelectedRow.Cells[1].Text));
+            
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
     }
 }

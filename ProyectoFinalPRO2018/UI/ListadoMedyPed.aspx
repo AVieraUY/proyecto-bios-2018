@@ -4,18 +4,32 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
-    <br />
+        Seleccionado un medicamento, se desplegaran todos sus pedidos (con todos sus 
+        datos), ordenadas cronológicamente. Se podrá filtrar dicha lista de pedidos por: 
+        todos (no importa su estado), solo generados, o solo entregados.
     <table style="width:100%;">
         <tr>
             <td>
                 <asp:DropDownList ID="ddl" runat="server" 
-                    onselectedindexchanged="ddl_SelectedIndexChanged">
+                    onselectedindexchanged="ddl_SelectedIndexChanged" AutoPostBack="True" 
+                    TabIndex="1">
+                    <asp:ListItem></asp:ListItem>
                 </asp:DropDownList>
             </td>
             <td>
-                &nbsp;</td>
+                <asp:GridView ID="grdMedicamentos" runat="server" AutoPostback = "True" 
+                    Height="100px" onselectedindexchanged="grdMedicamentos_SelectedIndexChanged" 
+                    Width="188px">
+                    <Columns>
+                        <asp:CommandField ButtonType="Button" HeaderText="Ver pedidos" 
+                            ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
+            </td>
             <td>
-                &nbsp;</td>
+                <asp:GridView ID="GridView1" runat="server">
+                </asp:GridView>
+            </td>
         </tr>
         <tr>
             <td>
