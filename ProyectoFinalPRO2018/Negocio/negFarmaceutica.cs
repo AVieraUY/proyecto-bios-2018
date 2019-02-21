@@ -96,7 +96,7 @@ namespace Negocio
             }
         }
 
-        public List<Farmaceutica> Listar()
+        public static List<Farmaceutica> Listar()
         {
             perFarmaceutica pf = new perFarmaceutica();
 

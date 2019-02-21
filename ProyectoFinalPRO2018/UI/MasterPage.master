@@ -31,7 +31,8 @@
                         NavigateUrl="~/RealizarPedido.aspx"></asp:MenuItem>
                 </asp:MenuItem>
                 <asp:MenuItem Text="Listados" Value="Listados">
-                    <asp:MenuItem Text="Medicamentos y Pedidos" Value="Medicamentos y Pedidos">
+                    <asp:MenuItem Text="Medicamentos y Pedidos" Value="Medicamentos y Pedidos" 
+                        NavigateUrl="~/ListadoMedyPed.aspx">
                     </asp:MenuItem>
                     <asp:MenuItem Text="Pedidos Generados" Value="Pedidos Generados"></asp:MenuItem>
                 </asp:MenuItem>

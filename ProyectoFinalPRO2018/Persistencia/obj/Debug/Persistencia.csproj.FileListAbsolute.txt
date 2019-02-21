@@ -5,3 +5,10 @@ C:\Users\Gabriela\Desktop\proyecto-bios-2018-master\ProyectoFinalPRO2018\Persist
 C:\Users\Gabriela\Desktop\proyecto-bios-2018-master\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
 C:\Users\Gabriela\Desktop\proyecto-bios-2018-master\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.dll
 C:\Users\Gabriela\Desktop\proyecto-bios-2018-master\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.pdb
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\Persistencia.dll
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\Persistencia.pdb
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\EntidadesCompartidas.dll
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\EntidadesCompartidas.pdb
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.dll
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.pdb
