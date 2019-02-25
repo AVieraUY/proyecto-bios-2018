@@ -29,7 +29,6 @@ tipo smallint not null)-- constraint check(tipo IN (1, 2)))
 --)
 go
 
-
 create table Empleado(
 userName varchar(20) primary key,
 horaInicio time not null,
