@@ -8,8 +8,8 @@ namespace EntidadesCompartidas
     public class Empleado: Usuario
     {
        // private string _horarioTrabajo;
-        private DateTime _horaInicio;
-        private DateTime _horaFin;
+        private string _horaInicio;
+        private string _horaFin;
 
         //public string HorarioTrabajo
         //{
@@ -26,7 +26,7 @@ namespace EntidadesCompartidas
         //    }
         //}
 
-        public DateTime HoraInicio
+        public string HoraInicio
         {
             get
             {
@@ -40,7 +40,7 @@ namespace EntidadesCompartidas
             }
         }
 
-        public DateTime HoraFin
+        public string HoraFin
         {
             get
             {
@@ -54,7 +54,7 @@ namespace EntidadesCompartidas
             }
         }
 
-        public Empleado(string pUsername, string pPassword, string pNombre, string pApellido, DateTime pHoraInicio, DateTime pHoraFin)
+        public Empleado(string pUsername, string pPassword, string pNombre, string pApellido, string pHoraInicio, string pHoraFin)
             : base(pUsername, pPassword, pNombre, pApellido)
         {
             HoraInicio = pHoraInicio;

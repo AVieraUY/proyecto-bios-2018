@@ -47,7 +47,7 @@ public partial class ABMMedicamentos : System.Web.UI.Page
 
     private void NoEncontrado()
     {
-        lblError.Text = "Complete los datos para agregar ell medicamento";
+        lblError.Text = "Complete los datos para agregar el medicamento";
         btnAgregar.Enabled = true;
         txtPrecio.Enabled = true;
         txtNombre.Enabled = true;

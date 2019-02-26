@@ -43,7 +43,7 @@ namespace Negocio
                         {
                             throw new Exception("Ya existe el empleado.");
                         }
-                    case 0:
+                    case 1:
                         {
                             break;
                         }

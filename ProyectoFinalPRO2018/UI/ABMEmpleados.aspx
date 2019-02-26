@@ -102,7 +102,7 @@
                     <asp:Label ID="Label6" runat="server" Text="Horario de ingreso:"></asp:Label>
                 </td>
                 <td class="style2">
-                    <asp:TextBox ID="TextBox1" runat="server" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="txtHIngreso" runat="server" Enabled="False"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
                         ControlToValidate="TextBox1" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
@@ -115,7 +115,7 @@
                     <asp:Label ID="Label7" runat="server" Text="Horario de salida:"></asp:Label>
                 </td>
                 <td class="style2">
-                    <asp:TextBox ID="TextBox2" runat="server" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="txtHSalida" runat="server" Enabled="False"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" 
                         ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>

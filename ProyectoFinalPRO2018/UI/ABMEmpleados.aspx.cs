@@ -59,8 +59,14 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
-           // Empleado empleado = new Empleado(txtNombre.Text, txtContraseña, txtNCompleto.Text, txtApellido.Text, )
+            Empleado emp = new Empleado(txtNombre.Text, txtContraseña.Text, txtNCompleto.Text, txtApellido.Text, txtHIngreso.Text, txtHSalida.Text);
 
+            negUsuario.Alta(emp);
+            lblError.Text = "Empleado agregado con éxito";
+
+            Session["empleado"] = emp;
+
+            Encontrado();
         }
 
         catch (Exception ex)
@@ -72,7 +78,19 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
+            Empleado emp = (Empleado)Session["empleado"];
 
+            emp.Apellido = txtApellido.Text;
+            emp.HoraFin = txtHSalida.Text;
+            emp.HoraInicio = txtHIngreso.Text;
+            emp.Nombre = txtNombre.Text;
+            emp.NombreCompleto = txtNCompleto.Text;
+            emp.Password = txtContraseña.Text;
+            emp.Username = txtUsuario.Text;
+
+            negUsuario.Modificacion(emp);
+            lblError.Text = "Empleado modificado con éxito";
+            
         }
 
         catch (Exception ex)
@@ -85,6 +103,25 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
+           Empleado emp = (Empleado)negUsuario.Buscar(txtUsuario.Text);
+
+           if (emp == null)
+           {
+               NoEncontrado();
+           }
+           else
+           {
+               txtApellido.Text = emp.Apellido;
+               txtHSalida.Text = emp.HoraFin;
+               txtHIngreso.Text = emp.HoraInicio;
+               txtNombre.Text = emp.Nombre;
+               txtNCompleto.Text = emp.NombreCompleto;
+               txtContraseña.Text = emp.Password;
+               txtUsuario.Text = emp.Username;
+              
+               Encontrado();
+               Session["empleado"] = emp;
+           }
 
         }
 
@@ -98,7 +135,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
-
+            negUsuario.Baja(txtUsuario.Text);
+            Limpiar();
+            lblError.Text = "Empleado eliminado con éxito";
+            
         }
 
         catch (Exception ex)
