@@ -53,7 +53,7 @@ namespace Persistencia
             return Convert.ToInt32(r.Value.ToString());
         }
 
-        public static Farmaceutica Buscar(long pRuc)
+        public Farmaceutica Buscar(long pRuc)
         {
             Conexion.Conectar();
 

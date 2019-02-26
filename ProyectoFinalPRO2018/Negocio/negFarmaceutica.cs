@@ -61,11 +61,11 @@ namespace Negocio
 
         public static Farmaceutica Buscar(long pRuc)
         {
-           //perFarmaceutica pf = new perFarmaceutica();
+           perFarmaceutica pf = new perFarmaceutica();
 
 
-           // Farmaceutica f = pf.Buscar(pRuc);
-            Farmaceutica f = perFarmaceutica.Buscar(pRuc);
+            Farmaceutica f = pf.Buscar(pRuc);
+            //Farmaceutica f = perFarmaceutica.Buscar(pRuc);
 
             //if (f == null)
             //    throw new Exception("No existe la farmacéutica.");

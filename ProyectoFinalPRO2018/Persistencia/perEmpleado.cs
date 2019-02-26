@@ -49,7 +49,7 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                e = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), (TimeSpan)(dr["horaInicio"]), (TimeSpan)(dr["horaFin"]));
+                e = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), (DateTime)(dr["horaInicio"]), (DateTime)(dr["horaFin"]));
             }
 
             Conexion.Desconectar();
@@ -98,7 +98,7 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                e = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), (TimeSpan)(dr["horaInicio"]), (TimeSpan)(dr["horaFin"]));
+                e = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), (DateTime)(dr["horaInicio"]), (DateTime)(dr["horaFin"]));
             }
 
             Conexion.Desconectar();

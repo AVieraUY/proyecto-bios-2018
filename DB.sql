@@ -29,6 +29,7 @@ tipo smallint not null)-- constraint check(tipo IN (1, 2)))
 --)
 go
 
+
 create table Empleado(
 userName varchar(20) primary key,
 horaInicio time not null,
@@ -58,13 +59,14 @@ foreign key (userName) references Cliente (userName),
 foreign key (codMedicamento,rut) references Medicamento (codigo,rut)
 )
 go
+select * from Medicamento
 
 --datos de prueba
 insert into Farmaceutica values(123456789012,'Bayer','bayer@bayer.com', 'Soriano 1821')
 insert into Farmaceutica values(111111111111,'Pharmaton','ventas@Pharmaton.com', 'Canelones 2120')
 insert into Farmaceutica values(987654321012,'Roemmers', 'somosRoemmers@roemmeanos.com', 'Colonia 1999')
 insert into Farmaceutica values(999999999999,'Otra', 'juanPerez@misterioso.com','18 de julio y Ejido')
-
+go
 insert into Medicamento values(1,123456789012,'aspirina','Fórmula mejorada',150)
 insert into Medicamento values(2,123456789012,'Redoxon', 'Aprobada por el ISN',350)
 insert into Medicamento values(6,123456789012,'Supradyn','Complete multivitamin and multi mineral formula',250)
@@ -72,14 +74,14 @@ insert into Medicamento values(2,111111111111,'Pharmaton Complex','ginseng G115'
 insert into Medicamento values(1,999999999999,'remedio','para dolores musculares',500) 
 insert into Medicamento values(1,987654321012,'DOLOREX','Naproxeno 500 mg',400) 
 insert into Medicamento values(8,987654321012,'ALERFAST FORTE','Loratadina 10mg.Dexametasona 2mg.',300)
-
+go
 insert into Usuario values('usuario','user','Empleado','pwd')
 insert into Usuario values('empleado','Empleado','test','pwd')
 insert into Usuario values('cliente','Cliente','test','pwd')
 insert into Usuario values('aviera','Agustin','Viera','123456')
 insert into Usuario values('aganz','Abril','Ganz','123456')
 insert into Usuario values('dgonzalez','Diego','Gonzalez','123456')
-
+go
 insert into Empleado values('usuario','09:00','18:00')
 insert into Empleado values('empleado','12:00','18:00')
 
@@ -392,11 +394,11 @@ select estado from Pedido where numero = @num
 go
 
 create proc Login
-@userName varchar(20)
+@userName varchar(20),
 @password varchar(20)
 as
 select *
 from Usuario u
 where @userName = u.userName
-and @pass = u.pass
+and @password = u.pass
 go

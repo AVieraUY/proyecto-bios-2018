@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
+using EntidadesCompartidas;
 
 public partial class ABMEmpleados : System.Web.UI.Page
 {
@@ -57,6 +59,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
+           // Empleado empleado = new Empleado(txtNombre.Text, txtContraseña, txtNCompleto.Text, txtApellido.Text, )
 
         }
 

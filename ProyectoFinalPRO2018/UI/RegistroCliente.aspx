@@ -26,9 +26,6 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                         ControlToValidate="txtUsuario" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                        ControlToValidate="txtUsuario" ErrorMessage="*" ForeColor="Red" 
-                        ValidationGroup="B"></asp:RequiredFieldValidator>
             </td>
             <td>
                 &nbsp;</td>

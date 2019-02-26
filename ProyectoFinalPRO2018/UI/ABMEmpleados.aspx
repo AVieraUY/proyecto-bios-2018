@@ -99,7 +99,7 @@
             </tr>
             <tr>
                 <td class="style1">
-                    <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="Label6" runat="server" Text="Horario de ingreso:"></asp:Label>
                 </td>
                 <td class="style2">
                     <asp:TextBox ID="TextBox1" runat="server" Enabled="False"></asp:TextBox>
@@ -112,25 +112,12 @@
             </tr>
             <tr>
                 <td class="style1">
-                    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="Label7" runat="server" Text="Horario de salida:"></asp:Label>
                 </td>
                 <td class="style2">
                     <asp:TextBox ID="TextBox2" runat="server" Enabled="False"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" 
                         ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="Red" 
-                        ValidationGroup="A"></asp:RequiredFieldValidator>
-                </td>
-                <td>
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style1">
-                    <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
-                </td>
-                <td class="style2">
-                    <asp:TextBox ID="TextBox3" runat="server" Enabled="False"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" 
-                        ControlToValidate="TextBox3" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
                 <td>
