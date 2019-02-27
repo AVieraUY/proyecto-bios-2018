@@ -12,51 +12,13 @@ namespace Negocio
         public static void Alta(Farmaceutica pFarmaceutica)
         {
             perFarmaceutica pf = new perFarmaceutica();
-
-            int r = pf.Alta(pFarmaceutica);
-
-            switch(r)
-            {
-                case -1:
-                    {
-                        throw new Exception("Ya existe la farmacéutica.");
-                    }
-                case  1:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception("Error desconocido.");
-                    }
-            }
+            pf.Alta(pFarmaceutica);
         }
 
-        public static void Baja(long pRuc)
+        public static void Baja(Farmaceutica f)
         {
             perFarmaceutica pf = new perFarmaceutica();
-
-            int r = pf.Baja(pRuc);
-
-            switch(r)
-            {
-                case -1:
-                    {
-                        throw new Exception("No existe la farmacéutica.");
-                    }
-                case -2:
-                    {
-                        throw new Exception("No es posible eliminar ya que tiene pedidos asociados.");
-                    }
-                case 1:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception("Error desconocido.");
-                    }
-            }
+            pf.Baja(f);  
         }
 
         public static Farmaceutica Buscar(long pRuc)
@@ -76,24 +38,8 @@ namespace Negocio
         public static void Modificacion(Farmaceutica pFarmaceutica)
         {
             perFarmaceutica pf = new perFarmaceutica();
+            pf.Modificacion(pFarmaceutica);
 
-            int r = pf.Modificacion(pFarmaceutica);
-
-            switch(r)
-            {
-                case -1:
-                    {
-                        throw new Exception("No existe la farmacéutica.");
-                    }
-                case 1:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception("Error desconocido.");
-                    }
-            }
         }
 
         public static List<Farmaceutica> Listar()

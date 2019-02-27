@@ -12,47 +12,14 @@ namespace Negocio
         public static void Alta(Medicamento pMedicamento)
         {
             perMedicamento pm = new perMedicamento();
+            pm.Alta(pMedicamento);
 
-            int r = pm.Alta(pMedicamento);
-
-            switch(r)
-            {
-                case -1:
-                    {
-                        throw new Exception("Ya existe el medicamento.");
-                    }
-                case 1:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception("Error desconocido.");
-                    }
-            }
         }
 
         public static void Baja(Medicamento pMedicamento)
         {
             perMedicamento pm = new perMedicamento();
-
-            int r = pm.Baja(pMedicamento);
-
-            switch(r)
-            {
-                case -1:
-                    {
-                        throw new Exception("No existe el medicamento.");
-                    }
-                case 1:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception("Error desconocido.");
-                    }
-            }
+            pm.Baja(pMedicamento);
         }
 
         public static Medicamento Buscar(Farmaceutica pFarmaceutica, int pCodigo)
@@ -70,24 +37,7 @@ namespace Negocio
         public static void Modificacion(Medicamento pMedicamento)
         {
             perMedicamento pm = new perMedicamento();
-
-            int r = pm.Modificacion(pMedicamento);
-
-            switch(r)
-            {
-                case -1:
-                    {
-                        throw new Exception("No existe el medicamento.");
-                    }
-                case 1:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception("Error desconocido.");
-                    }
-            }
+            pm.Modificacion(pMedicamento);
         }
 
         public static List<Medicamento> Listar()

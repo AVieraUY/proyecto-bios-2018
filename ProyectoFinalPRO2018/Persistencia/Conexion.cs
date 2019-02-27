@@ -14,16 +14,18 @@ namespace Persistencia
           //  DESKTOP-O63HRQF\\SQLEXPRESS
         public static SqlConnection cnn = null;
 
-        public static void Conectar()
+        public static Conexion Conectar()
         {
-            if (cnn == null)
+            Conexion c = new Conexion();
+           // if (cnn == null)
                 cnn = new SqlConnection(connectionString);
 
             if (cnn.State == ConnectionState.Closed)
                 cnn.Open();
+            return c;
         }
 
-        public static void Desconectar()
+        public static void Desconectar(Conexion c)
         {
             if (cnn != null || cnn.State != ConnectionState.Closed)
                 cnn.Close();

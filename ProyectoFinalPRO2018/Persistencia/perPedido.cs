@@ -10,9 +10,9 @@ namespace Persistencia
 {
     public class perPedido
     {
-        public int Alta(Pedido pedido)
+        public void Alta(Pedido pedido)
         {
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
             SqlCommand cmd = new SqlCommand("AltaPedido", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("codMedicamento", pedido.Medicamento.Codigo));
@@ -26,13 +26,38 @@ namespace Persistencia
 
             cmd.ExecuteNonQuery();
 
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
-            return Convert.ToInt32(r.Value);
+            int a = Convert.ToInt32(r.Value);
+
+            switch (a)
+            {
+                case -1:
+                    {
+                        throw new Exception("No existe el Cliente.");
+                    }
+                case -2:
+                    {
+                        throw new Exception("El Medicamento no es correcto.");
+                    }
+                case -3:
+                    {
+                        throw new Exception("La cantidad debe ser mayor a cero");
+                    }
+                case 1:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Error desconocido.");
+                    }
+            }
 
         }
-        public int Baja(Pedido pedido)
+        public void Baja(Pedido pedido)
         {
+            Conexion c = Conexion.Conectar();
             SqlCommand cmd = new SqlCommand("EliminarPedido", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("numero", pedido.Codigo));
@@ -43,13 +68,33 @@ namespace Persistencia
 
             cmd.ExecuteNonQuery();
 
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
-            return Convert.ToInt32(r.Value);
+            int a = Convert.ToInt32(r.Value);
+
+            switch (a)
+            {
+                case -1:
+                    {
+                        throw new Exception("No existe el Pedido.");
+                    }
+                case -2:
+                    {
+                        throw new Exception("No se puede  elminar el Pedido, su estado no es generado.");
+                    }
+                case 1:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Error desconocido.");
+                    }
+            }
         }
         public Pedido Buscar(int pCodigo)
         {
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("BuscarPedido", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -69,16 +114,16 @@ namespace Persistencia
             }
 
             dr.Close();
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
             return p;
         }
         public List<Pedido> ListarPorMedicamento(Medicamento Med)
         {
             List<Pedido> lista = new List<Pedido>();
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ListarPedidosxMedicamento", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("PedidosporMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("CodMEd", Med.Codigo));
@@ -96,19 +141,19 @@ namespace Persistencia
             }
 
             dr.Close();
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
             return lista;
         }
-        public List<Pedido> ListarPorEstado(byte pEstado)
+        public List<Pedido> ListarPorEstado(Pedido pe)
         {
             List<Pedido> lista = new List<Pedido>();
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("ListarPedido", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("estado", pEstado));
+            cmd.Parameters.Add(new SqlParameter("estado", pe.Estado));
             SqlDataReader dr = cmd.ExecuteReader();
 
             Pedido p = null;
@@ -117,13 +162,13 @@ namespace Persistencia
             perFarmaceutica pfar = null;
             while (dr.Read())
             {
-                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), pEstado);
+                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), Convert.ToByte(dr["estado"].ToString()));
 
                 lista.Add(p);
             }
 
             dr.Close();
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
             return lista;
 
@@ -132,7 +177,7 @@ namespace Persistencia
         public List<Pedido> ListarPorCliente(Cliente cli)
         {
             List<Pedido> lista = new List<Pedido>();
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("PedidosGeneradosxCliente", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -151,15 +196,15 @@ namespace Persistencia
             }
 
             dr.Close();
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
             return lista;
 
 
         }
-        public int CambiarEstado(Pedido p)
+        public void CambiarEstado(Pedido p)
         {
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("CambiarEstado", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -172,9 +217,30 @@ namespace Persistencia
 
             cmd.ExecuteNonQuery();
 
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
-            return Convert.ToInt32(r.Value);
+            int a = Convert.ToInt32(r.Value);
+            switch (a)
+            {
+                case -1:
+                    {
+                        throw new Exception("El pedido ya fue entregado.");
+                    }
+                case -2:
+                    {
+                        throw new Exception("No se puede cambiar el estado del pedido.");
+                    }
+
+                case 1:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Error desconocido.");
+                    }
+            }
+
         }
 
 

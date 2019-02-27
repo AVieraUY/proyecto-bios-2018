@@ -1,0 +1,3 @@
+conexion : pasar por parametro la conexion para poder tener varias en paralelo. //solucon data reader
+
+controlar maximo de caracteres (entidades compartidas)

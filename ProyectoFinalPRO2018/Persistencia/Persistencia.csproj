@@ -47,7 +47,6 @@
     <Compile Include="perFarmaceutica.cs" />
     <Compile Include="perMedicamento.cs" />
     <Compile Include="perPedido.cs" />
-    <Compile Include="perUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

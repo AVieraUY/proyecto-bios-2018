@@ -23,6 +23,8 @@ public partial class ABMEmpleados : System.Web.UI.Page
         txtNCompleto.Text = string.Empty;
         txtNombre.Text = string.Empty;
         txtUsuario.Text = string.Empty;
+        txtHIngreso.Text = string.Empty;
+        txtHSalida.Text = string.Empty;
 
         btnAgregar.Enabled = false;
         btnEliminar.Enabled = false;
@@ -39,6 +41,8 @@ public partial class ABMEmpleados : System.Web.UI.Page
         txtContraseña.Enabled = true;
         txtNCompleto.Enabled = true;
         txtNombre.Enabled = true;
+        txtHIngreso.Enabled = true;
+        txtHSalida.Enabled = true;
     }
     private void NoEncontrado()
     {
@@ -48,6 +52,8 @@ public partial class ABMEmpleados : System.Web.UI.Page
         txtContraseña.Enabled = true;
         txtNCompleto.Enabled = true;
         txtNombre.Enabled = true;
+        txtHIngreso.Enabled = true;
+        txtHSalida.Enabled = true;
 
         btnAgregar.Enabled = true;
     }
@@ -66,7 +72,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
             Session["empleado"] = emp;
 
-            Encontrado();
+            Limpiar();
         }
 
         catch (Exception ex)
@@ -135,7 +141,8 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
-            negUsuario.Baja(txtUsuario.Text);
+            Empleado emp = (Empleado)Session["empleado"];
+            negUsuario.Baja(emp);
             Limpiar();
             lblError.Text = "Empleado eliminado con éxito";
             

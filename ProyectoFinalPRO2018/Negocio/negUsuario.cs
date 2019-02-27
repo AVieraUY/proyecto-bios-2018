@@ -9,142 +9,53 @@ namespace Negocio
     {
         public static void Alta(Usuario pUsuario)
         {
-            if(pUsuario.GetType().Equals(typeof(Cliente)))
+            if(pUsuario is Cliente)
             {
                 perCliente pc = new perCliente();
+                pc.Alta((Cliente)pUsuario);
 
-                int r = pc.Alta((Cliente)pUsuario);
-
-                switch (r)
-                {
-                    case -1:
-                        {
-                            throw new Exception("Ya existe el cliente.");
-                        }
-                    case 1:
-                        {
-                            break;
-                        }
-                    default:
-                        {
-                            throw new Exception("Error desconocido.");
-                        }
-                }
             }
             else
             {
                 perEmpleado pe = new perEmpleado();
+                pe.Alta((Empleado)pUsuario);
 
-                int r = pe.Alta((Empleado)pUsuario);
-
-                switch (r)
-                {
-                    case -1:
-                        {
-                            throw new Exception("Ya existe el empleado.");
-                        }
-                    case 1:
-                        {
-                            break;
-                        }
-                    default:
-                        {
-                            throw new Exception("Error desconocido.");
-                        }
-                }
             }
         }
 
-        public static void Baja(string pUsername)
+        public static void Baja(Empleado emp)
         {
-            perUsuario pu = new perUsuario();
+            perEmpleado pe = new perEmpleado();
+            pe.Baja(emp);
 
-            int r = pu.Baja(pUsername);
-
-            switch(r)
-            {
-                case -1:
-                    {
-                        throw new Exception("No existe el usuario.");
-                    }
-                case 1:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        throw new Exception("Error desconocido.");
-                    }
-            }
         }
 
         public static Usuario Buscar(string pUsername)
         {
             Usuario u = null;
 
-            perCliente pc = new perCliente();
+           // perCliente pc = new perCliente();
 
-            u = pc.Buscar(pUsername);
+            //u = pc.Buscar(pUsername);
 
-            if(u.Equals(null))
-            {
+           // if(u.Equals(null))
+            //{
                 perEmpleado pe = new perEmpleado();
 
                 u = pe.Buscar(pUsername);
 
                 if (u.Equals(null))
                     throw new Exception("No existe el usuario.");
-            }
+           // }
 
             return u;
         }
 
-        public static void Modificacion(Usuario pUsuario)
+        public static void Modificacion(Empleado emp)
         {
-            if (pUsuario.GetType().Equals(typeof(Cliente)))
-            {
-                perCliente pc = new perCliente();
-
-                int r = pc.Modificacion((Cliente)pUsuario);
-
-                switch (r)
-                {
-                    case -1:
-                        {
-                            throw new Exception("No existe el cliente.");
-                        }
-                    case 1:
-                        {
-                            break;
-                        }
-                    default:
-                        {
-                            throw new Exception("Error desconocido.");
-                        }
-                }
-            }
-            else
-            {
                 perEmpleado pe = new perEmpleado();
+                pe.Modificacion(emp);
 
-                int r = pe.Modificacion((Empleado)pUsuario);
-
-                switch (r)
-                {
-                    case -1:
-                        {
-                            throw new Exception("No existe el empleado.");
-                        }
-                    case 0:
-                        {
-                            break;
-                        }
-                    default:
-                        {
-                            throw new Exception("Error desconocido.");
-                        }
-                }
-            }
         }
 
         public static Usuario Login(string pUsername, string pPassword)

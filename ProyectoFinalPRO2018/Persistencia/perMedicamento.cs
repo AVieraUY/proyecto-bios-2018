@@ -10,9 +10,9 @@ namespace Persistencia
 {
     public class perMedicamento
     {
-        public int Alta(Medicamento pMedicamento)
+        public void Alta(Medicamento pMedicamento)
         {
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("AltaMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -30,14 +30,31 @@ namespace Persistencia
 
             cmd.ExecuteNonQuery();
 
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
-            return Convert.ToInt32(r.Value);
+            int a = Convert.ToInt32(r.Value);
+
+            switch (a)
+            {
+                case -1:
+                    {
+                        throw new Exception("Ya existe el medicamento.");
+                    }
+                case 1:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Error desconocido.");
+                    }
+            }
+
         }
 
-        public int Baja(Medicamento pMedicamento)
+        public void Baja(Medicamento pMedicamento)
         {
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("EliminarMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -52,14 +69,30 @@ namespace Persistencia
 
             cmd.ExecuteNonQuery();
 
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
-            return Convert.ToInt32(r.Value);
+            int a = Convert.ToInt32(r.Value);
+
+            switch (a)
+            {
+                case -1:
+                    {
+                        throw new Exception("No existe el medicamento.");
+                    }
+                case 1:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Error desconocido.");
+                    }
+            }
         }
 
         public Medicamento Buscar(Farmaceutica pFarmaceutica, int pCodigo)
         {
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("BuscarMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -77,14 +110,14 @@ namespace Persistencia
             }
 
             dr.Close(); 
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
             return m;
         }
 
-        public int Modificacion(Medicamento pMedicamento)
+        public void Modificacion(Medicamento pMedicamento)
         {
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("ModificarMedicamento", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -102,32 +135,50 @@ namespace Persistencia
 
             cmd.ExecuteNonQuery();
 
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
-            return Convert.ToInt32(r.Value);
+            int a = Convert.ToInt32(r.Value);
+
+            switch (a)
+            {
+                case -1:
+                    {
+                        throw new Exception("No existe el medicamento.");
+                    }
+                case 1:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Error desconocido.");
+                    }
+            }
         }
 
         public List<Medicamento> Listar()
         {
             List<Medicamento> lista = new List<Medicamento>();
 
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("ListarMedicamentos", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataReader dr = cmd.ExecuteReader();
+            perFarmaceutica perf = new perFarmaceutica();
 
             while(dr.Read())
             {
-                Farmaceutica f = new Farmaceutica(Convert.ToInt32(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
-                Medicamento m = new Medicamento(f, Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descripcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
+               // Farmaceutica f = 
+                //Farmaceutica f = new Farmaceutica(Convert.ToInt64(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
+                Medicamento m = new Medicamento(perf.Buscar(Convert.ToInt64(dr["rut"].ToString())), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
                 lista.Add(m);
             }
 
             dr.Close();
-            Conexion.Desconectar();
-
+            Conexion.Desconectar(c);
+       
             return lista;
         }
 
@@ -135,7 +186,7 @@ namespace Persistencia
         {
             List<Medicamento> lista = new List<Medicamento>();
 
-            Conexion.Conectar();
+            Conexion c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("MedicamentosxFarmaceutica", Conexion.cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -151,7 +202,7 @@ namespace Persistencia
             }
 
             dr.Close();
-            Conexion.Desconectar();
+            Conexion.Desconectar(c);
 
             return lista;
         }

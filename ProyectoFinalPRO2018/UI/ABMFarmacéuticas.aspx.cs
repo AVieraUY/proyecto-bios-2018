@@ -94,7 +94,7 @@ public partial class ABMFarmacéuticas : System.Web.UI.Page
 
             Session["farmaceutica"] = f;
 
-            Encontrado();
+            Limpiar();
         }
         catch (Exception ex)
         {
@@ -132,7 +132,7 @@ public partial class ABMFarmacéuticas : System.Web.UI.Page
         {
             Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
 
-            negFarmaceutica.Baja(Convert.ToInt64(f.Ruc));
+            negFarmaceutica.Baja(f);
             Limpiar();
             lblError.Text = "Farmacéutica eliminada con éxito";
         }

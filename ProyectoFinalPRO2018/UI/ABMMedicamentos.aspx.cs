@@ -98,7 +98,7 @@ public partial class ABMMedicamentos : System.Web.UI.Page
 
             Session["medicamento"] = m;
 
-            Encontrado();
+            Limpiar();
         }
         catch (Exception ex)
         {

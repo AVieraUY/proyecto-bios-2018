@@ -25,7 +25,7 @@ userName varchar(20) primary key,
 nombre varchar(20) not null,
 apellido varchar(20) not null,
 pass varchar(20) not null,
-tipo smallint not null)-- constraint check(tipo IN (1, 2)))
+--tipo smallint not null)-- constraint check(tipo IN (1, 2)))
 --)
 go
 
@@ -90,9 +90,9 @@ insert into Cliente values('aviera','Maldonado','098654321')
 insert into Cliente values('aganz','18 de julio','26221324')
 insert into Cliente values('dgonzalez','Rivera','099456789')
 
-insert into Pedido values(1,123456789012,'agunz',5,'Entregado')
-insert into Pedido values(2,123456789012,'dgonzalez',2,'Entregado')
-insert into Pedido values(2,111111111111,'cliente',3,'Entregado')
+insert into Pedido values(1,123456789012,1,'agunz',5,'Entregado')
+insert into Pedido values(2,123456789012,1,'dgonzalez',2,'Entregado')
+insert into Pedido values(2,111111111111,2,'cliente',3,'Entregado')
 --sp
 go
 --Farmaceutica
@@ -381,17 +381,17 @@ else if (@estado = 3)
 select * from pedido where  estado = 'generado' or  estado = 'enviado' order by numero
 go
 
+create proc PedidosporMedicamento
+@codMed int , @rut bigint
+as
+select * from Pedido where  codMedicamento = @codMed and rut = @rut
+go
 create proc PedidosGeneradosxCliente
 @user varchar
 as
 select * from Pedido where estado = 'generado' and userName = @user
 go
 
-create proc EstadoPedido
-@num int
-as
-select estado from Pedido where numero = @num
-go
 
 create proc Login
 @userName varchar(20),

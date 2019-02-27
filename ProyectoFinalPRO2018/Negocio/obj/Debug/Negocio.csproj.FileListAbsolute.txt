@@ -16,3 +16,12 @@ C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Persistencia.pd
 C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.csprojResolveAssemblyReference.cache
 C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.dll
 C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.pdb
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Negocio.dll
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Negocio.pdb
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\Debug\EntidadesCompartidas.dll
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Persistencia.dll
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Persistencia.pdb
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.dll
+C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.pdb

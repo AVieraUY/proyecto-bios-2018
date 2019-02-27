@@ -6,7 +6,7 @@
 
         .style1
         {
-            width: 123px;
+            width: 137px;
         }
         .style2
         {
@@ -15,15 +15,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <p>
-        Actor Participante: Usuario empleado Resumen: Este formulario permitirá realizar 
-        cualquiera de las 3 acciones, a partir del ingreso del nombre de usuario de un 
-        empleado. Si el valor ya existe se podrá eliminar o modificar dicho empleado 
-        (previo despliegue de todos sus datos). En caso de que el usuario no exista, se 
-        solicitaran todos los datos para generar un nuevo empleado en el repositorio de 
-        datos. Tomar en cuenta que el valor ingresado podrá pertenecer a un cliente, y 
-        en este formulario no se manejan clientes (se deberá desplegar un mensaje de 
-        error acorde).</p>
         <table style="width:100%;">
             <tr>
                 <td class="style1">
@@ -104,7 +95,7 @@
                 <td class="style2">
                     <asp:TextBox ID="txtHIngreso" runat="server" Enabled="False"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
-                        ControlToValidate="TextBox1" ErrorMessage="*" ForeColor="Red" 
+                        ControlToValidate="txtHIngreso" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
                 <td>
@@ -117,7 +108,7 @@
                 <td class="style2">
                     <asp:TextBox ID="txtHSalida" runat="server" Enabled="False"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" 
-                        ControlToValidate="TextBox2" ErrorMessage="*" ForeColor="Red" 
+                        ControlToValidate="txtHSalida" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
                 <td>
