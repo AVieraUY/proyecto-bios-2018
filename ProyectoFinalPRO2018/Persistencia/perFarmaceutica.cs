@@ -10,9 +10,9 @@ namespace Persistencia
     {
         public void Alta(Farmaceutica pFarmaceutica)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("AltaFarmaceutica", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("AltaFarmaceutica", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pFarmaceutica.Ruc));
@@ -51,9 +51,9 @@ namespace Persistencia
 
         public void Baja(Farmaceutica f)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("EliminarFarmaceutica", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("EliminarFarmaceutica", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", f.Ruc));
@@ -92,9 +92,9 @@ namespace Persistencia
 
         public Farmaceutica Buscar(long pRuc)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("BuscarFarmaceutica", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("BuscarFarmaceutica", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pRuc));
@@ -116,9 +116,9 @@ namespace Persistencia
 
         public void Modificacion(Farmaceutica pFarmaceutica)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ModificarFarmaceutica", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("ModificarFarmaceutica", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pFarmaceutica.Ruc));
@@ -158,9 +158,9 @@ namespace Persistencia
         {
             List<Farmaceutica> lista = new List<Farmaceutica>();
 
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ListarFarmaceuticas", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("ListarFarmaceuticas", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataReader dr = cmd.ExecuteReader();

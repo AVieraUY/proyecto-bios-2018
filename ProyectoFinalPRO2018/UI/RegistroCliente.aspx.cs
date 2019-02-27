@@ -26,10 +26,17 @@ public partial class RegistroCliente : System.Web.UI.Page
 
     protected void btnAgregar_Click(object sender, EventArgs e)
     {
-        Cliente uc = new Cliente(txtUsuario.Text, txtContraseña.Text, txtNombre.Text, txtApellido.Text, txtDirEntrega.Text, txtTel.Text);
+        try
+        {
+            Cliente uc = new Cliente(txtUsuario.Text, txtContraseña.Text, txtNombre.Text, txtApellido.Text, txtDirEntrega.Text, txtTel.Text);
 
-        negUsuario.Alta(uc);
+            negUsuario.Alta(uc);
 
-        lblError.Text = "Cliente agregado con éxito";
+            lblError.Text = "Cliente agregado con éxito";
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
     }
 }

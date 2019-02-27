@@ -10,9 +10,9 @@ namespace Persistencia
     {
         public void Alta(Cliente pCliente)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("AgregarCliente", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("AgregarCliente", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("userName", pCliente.Username));
@@ -52,9 +52,9 @@ namespace Persistencia
 
         public Cliente Buscar(string pUsername)
         {
-            Conexion x = Conexion.Conectar();
+            SqlConnection x = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("BuscarCliente", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("BuscarCliente", x);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("userName", pUsername));
@@ -76,9 +76,9 @@ namespace Persistencia
        
         public Cliente Login(string pUsername, string pPassword)
         {
-            Conexion x = Conexion.Conectar();
+            SqlConnection x = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("LoginCliente", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("LoginCliente", x);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("username", pUsername));

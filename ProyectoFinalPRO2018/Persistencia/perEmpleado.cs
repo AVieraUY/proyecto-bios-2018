@@ -10,9 +10,9 @@ namespace Persistencia
     {
         public void Alta(Empleado pEmpleado)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("AgregarEmpleado", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("AgregarEmpleado", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("userName", pEmpleado.Username));
@@ -51,9 +51,9 @@ namespace Persistencia
 
         public Empleado Buscar(string pUsername)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("BuscarEmpleado", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("BuscarEmpleado", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("userName", pUsername));
@@ -75,9 +75,9 @@ namespace Persistencia
 
         public void Modificacion(Empleado pEmpleado)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ModificarEmpleado", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("ModificarEmpleado", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("userName", pEmpleado.Username));
@@ -115,9 +115,9 @@ namespace Persistencia
 
         public Empleado Login(string pUsername, string pPassword)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("LoginEmpleado", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("LoginEmpleado", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("username", pUsername));
@@ -138,9 +138,9 @@ namespace Persistencia
         }
         public void Baja(Empleado emp)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("EliminarUsuario", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("EliminarUsuario", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("userName", emp.Username));

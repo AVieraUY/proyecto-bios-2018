@@ -34,8 +34,9 @@ namespace EntidadesCompartidas
             set
             {
                 value = value.Trim();
-                if ((value.Length < 3 || value.StartsWith("09")) || (value.StartsWith("2")) || (value.StartsWith("4")))
-                    throw new Exception("Debe ingresar un teléfono válido.");
+               // if ((value.Length < 3 || (!value.StartsWith("09")) || (!value.StartsWith("2")) || (!value.StartsWith("4"))))
+                if (value.Length < 3)   
+                throw new Exception("Debe ingresar un teléfono válido.");
                 _telefono = value;
             }
         }

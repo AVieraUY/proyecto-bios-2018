@@ -12,9 +12,9 @@ namespace Persistencia
     {
         public void Alta(Medicamento pMedicamento)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("AltaMedicamento", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("AltaMedicamento", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Farmaceutica.Ruc));
@@ -54,9 +54,9 @@ namespace Persistencia
 
         public void Baja(Medicamento pMedicamento)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("EliminarMedicamento", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("EliminarMedicamento", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Farmaceutica.Ruc));
@@ -92,9 +92,9 @@ namespace Persistencia
 
         public Medicamento Buscar(Farmaceutica pFarmaceutica, int pCodigo)
         {
-            Conexion c = Conexion.Conectar();
+           SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("BuscarMedicamento", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("BuscarMedicamento", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pFarmaceutica.Ruc));
@@ -117,9 +117,9 @@ namespace Persistencia
 
         public void Modificacion(Medicamento pMedicamento)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ModificarMedicamento", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("ModificarMedicamento", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pMedicamento.Farmaceutica.Ruc));
@@ -160,9 +160,9 @@ namespace Persistencia
         {
             List<Medicamento> lista = new List<Medicamento>();
 
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ListarMedicamentos", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("ListarMedicamentos", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -186,9 +186,9 @@ namespace Persistencia
         {
             List<Medicamento> lista = new List<Medicamento>();
 
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("MedicamentosxFarmaceutica", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("MedicamentosxFarmaceutica", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("rut", pFarmaceutica.Ruc));

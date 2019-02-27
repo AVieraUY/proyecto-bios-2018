@@ -23,6 +23,10 @@ public partial class ABMFarmacéuticas : System.Web.UI.Page
         btnEliminar.Enabled = true;
         btnAgregar.Enabled = false;
 
+        txtCorreo.Enabled = true;
+        txtDireccion.Enabled = true;
+        txtNombre.Enabled = true;
+
     }
     private void NoEncontrado()
     {

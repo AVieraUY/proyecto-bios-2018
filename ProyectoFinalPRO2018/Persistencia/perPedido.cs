@@ -12,8 +12,8 @@ namespace Persistencia
     {
         public void Alta(Pedido pedido)
         {
-            Conexion c = Conexion.Conectar();
-            SqlCommand cmd = new SqlCommand("AltaPedido", Conexion.cnn);
+            SqlConnection c = Conexion.Conectar();
+            SqlCommand cmd = new SqlCommand("AltaPedido", c);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("codMedicamento", pedido.Medicamento.Codigo));
             cmd.Parameters.Add(new SqlParameter("rut", pedido.Medicamento.Farmaceutica.Ruc));
@@ -57,8 +57,8 @@ namespace Persistencia
         }
         public void Baja(Pedido pedido)
         {
-            Conexion c = Conexion.Conectar();
-            SqlCommand cmd = new SqlCommand("EliminarPedido", Conexion.cnn);
+            SqlConnection c = Conexion.Conectar();
+            SqlCommand cmd = new SqlCommand("EliminarPedido", c);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("numero", pedido.Codigo));
             SqlParameter r = new SqlParameter();
@@ -94,9 +94,9 @@ namespace Persistencia
         }
         public Pedido Buscar(int pCodigo)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("BuscarPedido", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("BuscarPedido", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("numero", pCodigo));
@@ -121,9 +121,9 @@ namespace Persistencia
         public List<Pedido> ListarPorMedicamento(Medicamento Med)
         {
             List<Pedido> lista = new List<Pedido>();
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("PedidosporMedicamento", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("PedidosporMedicamento", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("CodMEd", Med.Codigo));
@@ -148,9 +148,9 @@ namespace Persistencia
         public List<Pedido> ListarPorEstado(Pedido pe)
         {
             List<Pedido> lista = new List<Pedido>();
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ListarPedido", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("ListarPedido", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("estado", pe.Estado));
@@ -177,9 +177,9 @@ namespace Persistencia
         public List<Pedido> ListarPorCliente(Cliente cli)
         {
             List<Pedido> lista = new List<Pedido>();
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("PedidosGeneradosxCliente", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("PedidosGeneradosxCliente", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("user", cli.Username));
@@ -204,9 +204,9 @@ namespace Persistencia
         }
         public void CambiarEstado(Pedido p)
         {
-            Conexion c = Conexion.Conectar();
+            SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("CambiarEstado", Conexion.cnn);
+            SqlCommand cmd = new SqlCommand("CambiarEstado", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("numero", p.Codigo));

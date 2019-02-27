@@ -36,7 +36,8 @@
                     </asp:MenuItem>
                     <asp:MenuItem Text="Pedidos Generados" Value="Pedidos Generados"></asp:MenuItem>
                 </asp:MenuItem>
-                <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente"></asp:MenuItem>
+                <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente" 
+                    NavigateUrl="~/RegistroCliente.aspx"></asp:MenuItem>
             </Items>
         </asp:Menu>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
