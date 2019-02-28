@@ -13,8 +13,11 @@ public partial class RealizarPedido : System.Web.UI.Page
     {
         try
         {
-            grdMeds.DataSource = negMedicamento.Listar();
+            grdMeds.DataSource =  negMedicamento.Listar();
             grdMeds.DataBind();
+
+            int a = grdMeds.Columns.Count;
+            lblError.Text = a.ToString();
 
         }
         catch (Exception ex)
@@ -26,6 +29,5 @@ public partial class RealizarPedido : System.Web.UI.Page
     }
     protected void grdMeds_SelectedIndexChanged(object sender, EventArgs e)
     {
-
     }
 }

@@ -26,7 +26,10 @@
                     <asp:GridView ID="grdMeds" runat="server" 
                         onselectedindexchanged="grdMeds_SelectedIndexChanged">
                         <Columns>
-                            <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                            <asp:BoundField />
+                            <asp:BoundField />
+                            <asp:BoundField />
+                            <asp:BoundField />
                         </Columns>
                     </asp:GridView>
                 </td>
