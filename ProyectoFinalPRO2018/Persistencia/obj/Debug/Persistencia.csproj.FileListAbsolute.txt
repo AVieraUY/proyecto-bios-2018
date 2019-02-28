@@ -19,3 +19,12 @@ C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\b
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.dll
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.pdb
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\Persistencia.dll
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\Persistencia.pdb
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.csprojAssemblyReference.cache
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.csproj.CoreCompileInputs.cache
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.csproj.CopyComplete
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.dll
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Persistencia\obj\Debug\Persistencia.pdb

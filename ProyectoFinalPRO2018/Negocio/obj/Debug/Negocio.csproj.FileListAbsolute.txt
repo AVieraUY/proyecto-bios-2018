@@ -25,3 +25,14 @@ C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\bin\De
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.dll
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Negocio.dll
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Persistencia.dll
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\bin\Debug\Persistencia.pdb
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.dll
+C:\Users\Agustin\Documents\BIOS\Proyecto Final PRO 2018\ProyectoFinalPRO2018\Negocio\obj\Debug\Negocio.pdb
