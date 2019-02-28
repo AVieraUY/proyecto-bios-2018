@@ -246,6 +246,14 @@ if (exists (select * from Cliente where userName = @userName))
 return -1 --Es cliente.
 select * from  Empleado where userName = @userName
 go
+
+create proc BuscarCliente
+@userName varchar(20)
+as
+if (exists (select * from Empleado where userName = @userName))
+return -1 --Es Empleado.
+select * from  Cliente where userName = @userName
+go
 create proc ModificarEmpleado
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
 @horaInicio time,  @horaFin time
