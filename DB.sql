@@ -25,8 +25,7 @@ userName varchar(20) primary key,
 nombre varchar(20) not null,
 apellido varchar(20) not null,
 pass varchar(20) not null,
---tipo smallint not null)-- constraint check(tipo IN (1, 2)))
---)
+)
 go
 
 
@@ -59,7 +58,6 @@ foreign key (userName) references Cliente (userName),
 foreign key (codMedicamento,rut) references Medicamento (codigo,rut)
 )
 go
-select * from Medicamento
 
 --datos de prueba
 insert into Farmaceutica values(123456789012,'Bayer','bayer@bayer.com', 'Soriano 1821')
@@ -79,20 +77,21 @@ insert into Usuario values('usuario','user','Empleado','pwd')
 insert into Usuario values('empleado','Empleado','test','pwd')
 insert into Usuario values('cliente','Cliente','test','pwd')
 insert into Usuario values('aviera','Agustin','Viera','123456')
-insert into Usuario values('aganz','Abril','Ganz','123456')
+insert into Usuario values('agunz','Abril','Gunz','123456')
 insert into Usuario values('dgonzalez','Diego','Gonzalez','123456')
 go
 insert into Empleado values('usuario','09:00','18:00')
 insert into Empleado values('empleado','12:00','18:00')
 
 insert into Cliente values('cliente','Bv. Artigas','099123456')
-insert into Cliente values('aviera','Maldonado','098654321')
-insert into Cliente values('aganz','18 de julio','26221324')
+insert into Cliente values('aviera','Rocha','098654321')
+insert into Cliente values('agunz','18 de julio','26221324')
 insert into Cliente values('dgonzalez','Rivera','099456789')
 
-insert into Pedido values(1,123456789012,1,'agunz',5,'Entregado')
-insert into Pedido values(2,123456789012,1,'dgonzalez',2,'Entregado')
-insert into Pedido values(2,111111111111,2,'cliente',3,'Entregado')
+insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(1,123456789012,'agunz',5,'Entregado')
+insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(2,123456789012,'dgonzalez',2,'Entregado')
+insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(2,111111111111,'cliente',3,'Entregado')
+
 --sp
 go
 --Farmaceutica
@@ -149,8 +148,6 @@ as
 select * from Farmaceutica where rut = @rut;
 go
 
-select * from Farmaceutica
-go
 create proc ListarFarmaceuticas
 as
 select nombre from Farmaceutica
@@ -187,8 +184,6 @@ return -3
 end catch
 go
 
-select * from Medicamento
-go
 create proc BuscarMedicamento
 @rut bigint, @codigo int
 as
@@ -227,13 +222,13 @@ go
 --Empleado
 Create proc AgregarEmpleado
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
-@horaInicio time,  @horaFin time, @tipo smallint
+@horaInicio time,  @horaFin time
 as
 if (exists (select * from  Usuario  where userName = @userName))
 return -1 --ya  esta creado
 begin try
 begin tran
-insert into Usuario Values(@userName,@nombre,@apellido,@pass, @tipo)
+insert into Usuario Values(@userName,@nombre,@apellido,@pass)
 insert into Empleado values(@userName,@horaInicio,@horaFin)
 commit tran
 return 1
@@ -250,6 +245,14 @@ as
 if (exists (select * from Cliente where userName = @userName))
 return -1 --Es cliente.
 select * from  Empleado where userName = @userName
+go
+
+create proc BuscarCliente
+@userName varchar(20)
+as
+if (exists (select * from Empleado where userName = @userName))
+return -1 --Es Empleado.
+select * from  Cliente where userName = @userName
 go
 create proc ModificarEmpleado
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
@@ -292,13 +295,13 @@ go
 
 create proc AgregarCliente
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
-@direccion varchar,  @telefono varchar, @tipo smallint
+@direccion varchar,  @telefono varchar
 as
 if (exists (select * from  Usuario  where userName = @userName))
 return -1 --ya  esta creado
 begin try
 begin tran
-insert into Usuario Values(@userName,@nombre,@apellido,@pass, @tipo)
+insert into Usuario Values(@userName,@nombre,@apellido,@pass)
 insert into Cliente values(@userName,@direccion,@telefono)
 commit tran
 return 1
