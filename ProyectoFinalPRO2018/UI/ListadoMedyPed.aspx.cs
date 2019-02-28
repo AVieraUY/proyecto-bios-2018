@@ -51,6 +51,10 @@ public partial class ListadoMedyPed : System.Web.UI.Page
             Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
             Medicamento m = negMedicamento.Buscar(f, Convert.ToInt32(grdMedicamentos.SelectedRow.Cells[1].Text));
             
+            grdPedidos.DataSource = negPedido.ListarPorMedicamento(m);
+            grdPedidos.DataBind();
+
+            
         }
         catch (Exception ex)
         {
