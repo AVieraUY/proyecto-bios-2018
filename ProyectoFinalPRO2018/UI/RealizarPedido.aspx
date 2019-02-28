@@ -24,8 +24,10 @@
             <tr>
                 <td>
                     <asp:GridView ID="grdMeds" runat="server" 
-                        onselectedindexchanged="grdMeds_SelectedIndexChanged">
+                        onselectedindexchanged="grdMeds_SelectedIndexChanged" 
+                        AutoGenerateColumns="False">
                         <Columns>
+                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                             <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                         </Columns>
                     </asp:GridView>

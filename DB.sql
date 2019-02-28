@@ -41,7 +41,7 @@ create table Cliente
 (
 userName varchar(20) primary key,
 direccion varchar(50) not null,
-telefono varchar (9) not null,
+telefono varchar (10) not null,
 foreign key (userName) references Usuario (userName)
 )
 go
@@ -150,7 +150,7 @@ go
 
 create proc ListarFarmaceuticas
 as
-select nombre from Farmaceutica
+select * from Farmaceutica
 go
 
 --Medicamento
@@ -187,7 +187,7 @@ go
 create proc BuscarMedicamento
 @rut bigint, @codigo int
 as
-select *  from  Medicamento where descipcion = @rut and codigo = @codigo;
+select *  from  Medicamento where rut = @rut and codigo = @codigo;
 go
 
 create proc EliminarMedicamento
@@ -247,13 +247,6 @@ return -1 --Es cliente.
 select * from  Empleado where userName = @userName
 go
 
-create proc BuscarCliente
-@userName varchar(20)
-as
-if (exists (select * from Empleado where userName = @userName))
-return -1 --Es Empleado.
-select * from  Cliente where userName = @userName
-go
 create proc ModificarEmpleado
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
 @horaInicio time,  @horaFin time
@@ -295,7 +288,7 @@ go
 
 create proc AgregarCliente
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
-@direccion varchar,  @telefono varchar
+@direccion varchar(50) ,  @telefono varchar(10)
 as
 if (exists (select * from  Usuario  where userName = @userName))
 return -1 --ya  esta creado
@@ -310,6 +303,14 @@ begin catch
 rollback tran
 return -2
 end catch
+go
+
+create proc BuscarCliente
+@userName varchar(20)
+as
+if (exists (select * from Empleado where userName = @userName))
+return -1 --Es Empleado.
+select * from  Cliente where userName = @userName
 go
 
 --pedido
