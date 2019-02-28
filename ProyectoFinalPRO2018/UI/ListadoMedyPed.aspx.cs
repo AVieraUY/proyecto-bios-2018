@@ -19,6 +19,7 @@ public partial class ListadoMedyPed : System.Web.UI.Page
                 ddl.DataTextField = "nombre";
                 ddl.DataValueField = "ruc";
                 ddl.DataBind();
+           
             }
             catch (Exception ex)
             {
@@ -38,6 +39,9 @@ public partial class ListadoMedyPed : System.Web.UI.Page
 
             grdMedicamentos.DataSource = lm;
             grdMedicamentos.DataBind();
+            //grdMedicamentos.Columns[1].Visible
+           // grdMedicamentos.Columns[1]. //Visible = false;
+            //grdMedicamentos.Columns[3].Visible = false;
         }
         catch (Exception ex)
         {
