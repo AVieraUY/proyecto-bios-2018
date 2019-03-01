@@ -32,21 +32,22 @@ namespace Negocio
 
         public static Usuario Buscar(string pUsername)
         {
+            
             Usuario u = null;
 
-           // perCliente pc = new perCliente();
+            perCliente pc = new perCliente();
 
-            //u = pc.Buscar(pUsername);
+            u = pc.Buscar(pUsername);
 
-           // if(u.Equals(null))
-            //{
+            if(u == null)
+            {
                 perEmpleado pe = new perEmpleado();
 
                 u = pe.Buscar(pUsername);
 
                 if (u.Equals(null))
                     throw new Exception("No existe el usuario.");
-           // }
+            }
 
             return u;
         }

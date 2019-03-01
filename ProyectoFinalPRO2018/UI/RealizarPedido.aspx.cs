@@ -16,9 +16,6 @@ public partial class RealizarPedido : System.Web.UI.Page
             grdMeds.DataSource =  negMedicamento.Listar();
             grdMeds.DataBind();
 
-            int a = grdMeds.Columns.Count;
-            lblError.Text = a.ToString();
-
         }
         catch (Exception ex)
         {
@@ -29,5 +26,65 @@ public partial class RealizarPedido : System.Web.UI.Page
     }
     protected void grdMeds_SelectedIndexChanged(object sender, EventArgs e)
     {
+        try
+        {
+            lblPrecio.Visible = false;
+            BtnPedir.Visible = false;
+            txtCantidad.Text = string.Empty;
+
+            Medicamento med = negMedicamento.Listar()[grdMeds.SelectedRow.RowIndex];
+            Session["med"] = med;
+            List<Medicamento> lm = new List<Medicamento>();
+            lm.Add(med);
+
+            grd1Med.DataSource = lm;
+            grd1Med.DataBind();
+
+            Label1.Visible = true;
+            txtCantidad.Visible = true;
+            btnListo.Visible = true;
+        }
+     
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+
+    }
+    protected void grd1Med_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnListo_Click(object sender, EventArgs e)
+    {
+        Medicamento med = (Medicamento)Session["med"];
+        lblPrecio.Visible = true;
+        BtnPedir.Visible = true;
+        lblPrecio.Text = "Se realizará un pedido de " + txtCantidad.Text + " " + med.Nombre + " por $" +((Convert.ToDecimal(txtCantidad.Text) * Convert.ToDecimal(med.Precio)).ToString());
+    }
+    protected void BtnPedir_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Medicamento med = (Medicamento)Session["med"];
+            Cliente cli = (Cliente)Session["usuario"];
+
+            Pedido pe = new Pedido(med, cli, 0, Convert.ToInt32(txtCantidad.Text), 1);
+
+            negPedido.Alta(pe);
+
+            lblError.Text = "Pedido realizado con éxito";
+
+            Label1.Visible = false;
+            txtCantidad.Visible = false;
+            btnListo.Visible = false;
+            lblPrecio.Visible = false;
+            BtnPedir.Visible = false;
+
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
     }
 }
