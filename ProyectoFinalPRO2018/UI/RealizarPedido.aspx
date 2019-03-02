@@ -10,16 +10,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
-        &nbsp;<table 
+        <table 
             style="width:100%;">
-            <tr>
-                <td class="style1">
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-            </tr>
             <tr>
                 <td class="style1">
                     <asp:GridView ID="grdMeds" runat="server" 
@@ -32,12 +24,8 @@
                     </asp:GridView>
                 </td>
                 <td>
-                    <asp:Label ID="Label1" runat="server" Text="Cantidad a pedir:" Visible="False"></asp:Label>
-                    <asp:TextBox ID="txtCantidad" runat="server" Visible="False"></asp:TextBox>
-                    <asp:Button ID="btnListo" runat="server" onclick="btnListo_Click" Text="Listo" 
-                        Visible="False" />
                     <asp:GridView ID="grd1Med" runat="server" AutoGenerateColumns="False" 
-                        onselectedindexchanged="grd1Med_SelectedIndexChanged">
+                        onselectedindexchanged="grd1Med_SelectedIndexChanged" Height="79px">
                         <Columns>
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                             <asp:BoundField DataField="Codigo" HeaderText="Código" />
@@ -47,6 +35,14 @@
                             <asp:BoundField DataField="Farmaceutica.Ruc" HeaderText="Rut Farmaceutica" />
                         </Columns>
                     </asp:GridView>
+                    <br />
+                    <asp:Label ID="Label1" runat="server" Text="Cantidad a pedir:" Visible="False"></asp:Label>
+                    <asp:TextBox ID="txtCantidad" runat="server" Visible="False"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                        ControlToValidate="txtCantidad" ErrorMessage="*" ForeColor="Red" 
+                        ValidationGroup="a"></asp:RequiredFieldValidator>
+                    <asp:Button ID="btnListo" runat="server" onclick="btnListo_Click" Text="Listo" 
+                        Visible="False" ValidationGroup="a" />
                     <br />
                     <br />
                     <br />

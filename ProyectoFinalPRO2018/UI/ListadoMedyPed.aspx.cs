@@ -39,9 +39,6 @@ public partial class ListadoMedyPed : System.Web.UI.Page
 
             grdMedicamentos.DataSource = lm;
             grdMedicamentos.DataBind();
-            //grdMedicamentos.Columns[1].Visible
-           // grdMedicamentos.Columns[1]. //Visible = false;
-            //grdMedicamentos.Columns[3].Visible = false;
         }
         catch (Exception ex)
         {
@@ -50,19 +47,18 @@ public partial class ListadoMedyPed : System.Web.UI.Page
     }
     protected void grdMedicamentos_SelectedIndexChanged(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
             Medicamento m = negMedicamento.Buscar(f, Convert.ToInt32(grdMedicamentos.SelectedRow.Cells[1].Text));
-            
-            grdPedidos.DataSource = negPedido.ListarPorMedicamento(m);
-            grdPedidos.DataBind();
 
+            GridView1.DataSource = negPedido.ListarPorMedicamento(m);
+            GridView1.DataBind();
             
-        }
-        catch (Exception ex)
-        {
-            lblError.Text = ex.Message;
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    lblError.Text = ex.Message;
+        //}
     }
 }

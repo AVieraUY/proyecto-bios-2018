@@ -30,6 +30,13 @@ public partial class ABMEmpleados : System.Web.UI.Page
         btnEliminar.Enabled = false;
         btnModificar.Enabled = false;
 
+        txtApellido.Enabled = false;
+        txtContraseña.Enabled = false;
+        txtNCompleto.Enabled = false;
+        txtNombre.Enabled = false;
+        txtHIngreso.Enabled = false;
+        txtHSalida.Enabled = false;
+
         lblError.Text = string.Empty;
     }
     private void Encontrado()
@@ -68,6 +75,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
             Empleado emp = new Empleado(txtNombre.Text, txtContraseña.Text, txtNCompleto.Text, txtApellido.Text, txtHIngreso.Text, txtHSalida.Text);
 
             negUsuario.Alta(emp);
+
             lblError.Text = "Empleado agregado con éxito";
 
             Session["empleado"] = emp;

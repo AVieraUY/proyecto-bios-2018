@@ -131,13 +131,12 @@ namespace Persistencia
 
             SqlDataReader dr = cmd.ExecuteReader();
 
-            Pedido p = null;
+            Pedido pe = null;
             perCliente pcli = null;
-
             while (dr.Read())
             {
-                p = new Pedido(Med, pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), Convert.ToByte(dr["estado"].ToString()));
-                lista.Add(p);
+                pe = new Pedido(Med, pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), Convert.ToByte(dr["estado"].ToString()));
+                lista.Add(pe);
             }
 
             dr.Close();

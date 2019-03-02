@@ -45,8 +45,6 @@ namespace Negocio
 
                 u = pe.Buscar(pUsername);
 
-                if (u.Equals(null))
-                    throw new Exception("No existe el usuario.");
             }
 
             return u;

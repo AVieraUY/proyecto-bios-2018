@@ -15,7 +15,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-        <table style="width:100%;">
+        <table style="width:100%; height: 208px;">
             <tr>
                 <td class="style1">
                     <asp:Label ID="Label5" runat="server" Text="Usuario:"></asp:Label>

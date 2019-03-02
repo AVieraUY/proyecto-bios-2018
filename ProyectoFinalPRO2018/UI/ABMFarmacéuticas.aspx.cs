@@ -51,6 +51,10 @@ public partial class ABMFarmacéuticas : System.Web.UI.Page
         btnEliminar.Enabled = false;
         btnAgregar.Enabled = false;
 
+        txtCorreo.Enabled = false;
+        txtDireccion.Enabled = false;
+        txtNombre.Enabled = false;
+
     }
     
     protected void btnBuscar_Click(object sender, EventArgs e)

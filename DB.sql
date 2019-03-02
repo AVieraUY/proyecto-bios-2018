@@ -73,9 +73,9 @@ insert into Medicamento values(1,999999999999,'remedio','para dolores musculares
 insert into Medicamento values(1,987654321012,'DOLOREX','Naproxeno 500 mg',400) 
 insert into Medicamento values(8,987654321012,'ALERFAST FORTE','Loratadina 10mg.Dexametasona 2mg.',300)
 go
-insert into Usuario values('usuario','user','Empleado','pwd')
-insert into Usuario values('empleado','Empleado','test','pwd')
-insert into Usuario values('cliente','Cliente','test','pwd')
+insert into Usuario values('usuario','user','Empleado','password')
+insert into Usuario values('empleado','Empleado','test','password')
+insert into Usuario values('cliente','Cliente','test','password')
 insert into Usuario values('aviera','Agustin','Viera','123456')
 insert into Usuario values('agunz','Abril','Gunz','123456')
 insert into Usuario values('dgonzalez','Diego','Gonzalez','123456')
@@ -244,7 +244,8 @@ create proc BuscarEmpleado
 as
 if (exists (select * from Cliente where userName = @userName))
 return -1 --Es cliente.
-select * from  Empleado where userName = @userName
+select * from  Empleado inner join Usuario on Empleado.userName = Usuario.userName
+where Empleado.userName = @userName
 go
 
 create proc ModificarEmpleado
@@ -288,11 +289,7 @@ go
 
 create proc AgregarCliente
 @userName varchar(20), @nombre varchar(20), @apellido varchar(20), @pass varchar(20),
-<<<<<<< HEAD
-@direccion varchar(50),  @telefono varchar (9)
-=======
 @direccion varchar(50) ,  @telefono varchar(10)
->>>>>>> 506c675a66abe9b63d64ab2fe9d7fcafc71c1fe8
 as
 if (exists (select * from  Usuario  where userName = @userName))
 return -1 --ya  esta creado
@@ -314,7 +311,8 @@ create proc BuscarCliente
 as
 if (exists (select * from Empleado where userName = @userName))
 return -1 --Es Empleado.
-select * from  Cliente where userName = @userName
+select * from  Cliente inner join Usuario on Cliente.userName = Usuario.userName
+where Cliente.userName = @userName
 go
 
 --pedido
@@ -410,3 +408,4 @@ from Usuario u
 where @userName = u.userName
 and @password = u.pass
 go
+select * from Usuario

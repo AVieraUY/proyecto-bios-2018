@@ -40,6 +40,9 @@
                     NavigateUrl="~/RegistroCliente.aspx"></asp:MenuItem>
             </Items>
         </asp:Menu>
+        <br />
+        <br />
+        <br />
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
             <p>

@@ -15,8 +15,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
-        <br />
-        <br />
         <table style="width:100%;">
             <tr>
                 <td class="style1">
