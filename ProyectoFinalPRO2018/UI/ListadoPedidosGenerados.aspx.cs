@@ -13,8 +13,36 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
     {
         try
         {
-            //negPedido.ListarPorCliente
-            //negPedido.ListarPorEstado
+            //Cliente cli = (Cliente)Session["usuario"];
+            Cliente cli = (Cliente)negUsuario.Buscar("cliente");
+            grdPedidos.DataSource = negPedido.ListarPorCliente(cli);
+            grdPedidos.DataBind();
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+    protected void grdPedidos_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Pedido p = negPedido.Buscar(Convert.ToInt32(grdPedidos.SelectedRow.Cells[0].Text));
+        Session["p"] = p;
+
+        List<Pedido> lp = new List<Pedido>();
+        lp.Add(p);
+
+        GridView1.DataSource = lp;
+        GridView1.DataBind();
+
+        btnEliminar.Visible = true;
+    }
+    protected void btnEliminar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Pedido p = (Pedido)Session["p"];
+            negPedido.Baja(p);
+            lblError.Text = "Pedido eliminado con éxito";
         }
         catch (Exception ex)
         {

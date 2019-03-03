@@ -116,6 +116,9 @@ namespace Persistencia
             dr.Close();
             Conexion.Desconectar(c);
 
+            if (p == null)
+                throw new Exception("No existe el pedido");
+
             return p;
         }
         public List<Pedido> ListarPorMedicamento(Medicamento Med, string estado)

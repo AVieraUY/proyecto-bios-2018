@@ -51,6 +51,7 @@ public partial class ListadoMedyPed : System.Web.UI.Page
         try
         {
             ddlEstado.Visible = true;
+            ddlEstado.SelectedIndex = 0;
             lblError.Text = string.Empty;
             Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
             Medicamento m = negMedicamento.Buscar(f, Convert.ToInt32(grdMedicamentos.SelectedRow.Cells[1].Text));
@@ -99,7 +100,7 @@ public partial class ListadoMedyPed : System.Web.UI.Page
                     throw new Exception("No se encontraron pedidos con estado generado de este medicamento");
             }
 
-            else if (ddlEstado.SelectedIndex == 0)
+            else if (ddlEstado.SelectedIndex == 2)
             {
                 lblError.Text = string.Empty;
                 List<Pedido> lp = negPedido.ListarPorMedicamento(m, "Entregado");

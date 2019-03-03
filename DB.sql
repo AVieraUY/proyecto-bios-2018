@@ -88,7 +88,7 @@ insert into Cliente values('abrilg','18 de julio','26221324')
 insert into Cliente values('dgonzalez','Rivera','099456789')
 
 insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(1,123456789012,'abrilg',5,'Entregado')
-insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(2,123456789012,'dgonzalez',2,'Entregado')
+insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(2,123456789012,'dgonzalez',2,'Generado')
 insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(2,111111111111,'cliente',3,'Entregado')
 
 --sp
@@ -377,31 +377,36 @@ as
 select * from Pedido
 go 
 
-create proc ListarporEstado
-@estado varchar(9)
-as
-if (@estado = 0)
-select * 
-from Pedido 
-else if (@estado = 1)
-select * from Pedido where estado ='Generado' order by numero
-else if (@estado = 2)
-select * from Pedido where estado ='Entregado' order by numero
-else if (@estado = 3)
-select * from pedido where  estado = 'Generado' or  estado = 'Enviado' order by numero
-go
+--create proc ListarporEstado
+--@estado varchar(9)
+--as
+--if (@estado = 0)
+--select * 
+--from Pedido 
+--else if (@estado = 1)
+--select * from Pedido where estado ='Generado' order by numero
+--else if (@estado = 2)
+--select * from Pedido where estado ='Entregado' order by numero
+--else if (@estado = 3)
+--select * from pedido where  estado = 'Generado' or  estado = 'Enviado' order by numero
+--go
 
 create proc PedidosporMedicamento
 @codMed int , @rut bigint , @estado varchar (9)
 as
-select * from Pedido where  codMedicamento = @codMed and rut = @rut
+if @estado = 'Todos'
+select * from Pedido where  codMedicamento = @codMed and rut = @rut 
+order by numero
+else 
+select * from Pedido where  codMedicamento = @codMed and rut = @rut and estado = @estado
+order by numero
 go
+
 create proc PedidosGeneradosxCliente
-@user varchar
+@user varchar (20)
 as
 select * from Pedido where estado = 'Generado' and userName = @user
 go
-
 
 create proc Login
 @userName varchar(20),
