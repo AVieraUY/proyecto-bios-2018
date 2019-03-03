@@ -14,10 +14,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
-        Seleccionado un medicamento, se desplegaran todos sus pedidos (con todos sus 
-        datos), ordenadas cronológicamente. Se podrá filtrar dicha lista de pedidos por: 
-        todos (no importa su estado), solo generados, o solo entregados.
-    <table style="width:100%;">
+        &nbsp;<table style="width:100%;">
         <tr>
             <td class="style3">
                 <asp:DropDownList ID="ddl" runat="server" 
@@ -37,17 +34,19 @@
                 </asp:GridView>
             </td>
             <td>
-                <asp:DropDownList ID="ddlEstado" runat="server">
+                <asp:DropDownList ID="ddlEstado" runat="server" AutoPostBack="True" 
+                    onselectedindexchanged="ddlEstado_SelectedIndexChanged" Visible="False">
                     <asp:ListItem Value="1">Todos</asp:ListItem>
                     <asp:ListItem Value="2">Generados</asp:ListItem>
                     <asp:ListItem Value="3">Entregados</asp:ListItem>
                 </asp:DropDownList>
-                <asp:GridView ID="GridView1" runat="server" style="margin-left: 0px">
+                <asp:GridView ID="GridView1" runat="server" style="margin-left: 0px" 
+                    AutoGenerateColumns="False">
                     <Columns>
-                        <asp:BoundField />
-                        <asp:BoundField />
-                        <asp:BoundField />
-                        <asp:BoundField />
+                        <asp:BoundField DataField="codigo" HeaderText="Código" />
+                        <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+                        <asp:BoundField DataField="estado" HeaderText="Estado" />
+                        <asp:BoundField DataField="Cliente.userName" HeaderText="Cliente" />
                     </Columns>
                 </asp:GridView>
             </td>

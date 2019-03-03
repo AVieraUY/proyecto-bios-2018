@@ -99,18 +99,18 @@ namespace Persistencia
             SqlCommand cmd = new SqlCommand("BuscarPedido", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("numero", pCodigo));
+            cmd.Parameters.Add(new SqlParameter("num", pCodigo));
 
             SqlDataReader dr = cmd.ExecuteReader();
 
             Pedido p = null;
-            perMedicamento pmed = null;
-            perCliente pcli = null;
-            perFarmaceutica pfar = null;
+            perMedicamento pmed = new perMedicamento();
+            perCliente pcli = new perCliente();
+            perFarmaceutica pfar = new perFarmaceutica();
             
             while (dr.Read())
             {
-                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), pcli.Buscar(dr["username"].ToString()), pCodigo, Convert.ToInt32(dr["cantidad"].ToString()), Convert.ToByte(dr["estado"].ToString()));
+                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), pcli.Buscar(dr["username"].ToString()), pCodigo, Convert.ToInt32(dr["cantidad"].ToString()), (dr["estado"].ToString()));
             }
 
             dr.Close();
@@ -118,7 +118,7 @@ namespace Persistencia
 
             return p;
         }
-        public List<Pedido> ListarPorMedicamento(Medicamento Med)
+        public List<Pedido> ListarPorMedicamento(Medicamento Med, string estado)
         {
             List<Pedido> lista = new List<Pedido>();
             SqlConnection c = Conexion.Conectar();
@@ -128,14 +128,16 @@ namespace Persistencia
 
             cmd.Parameters.Add(new SqlParameter("CodMEd", Med.Codigo));
             cmd.Parameters.Add(new SqlParameter("rut", Med.Farmaceutica.Ruc));
+            cmd.Parameters.Add(new SqlParameter("estado", estado));
 
             SqlDataReader dr = cmd.ExecuteReader();
 
             Pedido pe = null;
-            perCliente pcli = null;
+            perCliente pcli = new perCliente();
+
             while (dr.Read())
             {
-                pe = new Pedido(Med, pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), Convert.ToByte(dr["estado"].ToString()));
+                pe = new Pedido(Med, pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), (dr["estado"].ToString()));
                 lista.Add(pe);
             }
 
@@ -149,19 +151,19 @@ namespace Persistencia
             List<Pedido> lista = new List<Pedido>();
             SqlConnection c = Conexion.Conectar();
 
-            SqlCommand cmd = new SqlCommand("ListarPedido", c);
+            SqlCommand cmd = new SqlCommand("ListarporEstado", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add(new SqlParameter("estado", pe.Estado));
             SqlDataReader dr = cmd.ExecuteReader();
 
             Pedido p = null;
-            perCliente pcli = null;
-            perMedicamento pmed = null;
-            perFarmaceutica pfar = null;
+            perCliente pcli = new perCliente();
+            perMedicamento pmed = new perMedicamento();
+            perFarmaceutica pfar = new perFarmaceutica();
             while (dr.Read())
             {
-                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), Convert.ToByte(dr["estado"].ToString()));
+                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()),(dr["estado"].ToString()));
 
                 lista.Add(p);
             }
@@ -185,11 +187,11 @@ namespace Persistencia
             SqlDataReader dr = cmd.ExecuteReader();
 
             Pedido p = null;
-            perMedicamento pmed = null;
-            perFarmaceutica pfar = null;
+            perMedicamento pmed = new perMedicamento();
+            perFarmaceutica pfar = new perFarmaceutica();
             while (dr.Read())
             {
-                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), cli, Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), Convert.ToByte(dr["estado"].ToString()));
+                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), cli, Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), (dr["estado"].ToString()));
 
                 lista.Add(p);
             }
@@ -201,14 +203,14 @@ namespace Persistencia
 
 
         }
-        public void CambiarEstado(Pedido p)
+        public void CambiarEstado(Pedido pPedido)
         {
             SqlConnection c = Conexion.Conectar();
 
             SqlCommand cmd = new SqlCommand("CambiarEstado", c);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("numero", p.Codigo));
+            cmd.Parameters.Add(new SqlParameter("num", pPedido.Codigo));
             SqlParameter r = new SqlParameter();
             r.Direction = ParameterDirection.ReturnValue;
 
@@ -239,6 +241,34 @@ namespace Persistencia
                         throw new Exception("Error desconocido.");
                     }
             }
+
+        }
+        public List<Pedido> ListarPedido()
+        {
+            List<Pedido> lista = new List<Pedido>();
+            SqlConnection c = Conexion.Conectar();
+
+            SqlCommand cmd = new SqlCommand("ListarPedido", c);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            Pedido p = null;
+            perCliente pcli = new perCliente();
+            perMedicamento pmed = new perMedicamento();
+            perFarmaceutica pfar = new perFarmaceutica();
+            while (dr.Read())
+            {
+                p = new Pedido(pmed.Buscar(pfar.Buscar(Convert.ToInt64(dr["Rut"].ToString())), Convert.ToInt32(dr["codMedicamento"].ToString())), pcli.Buscar(dr["username"].ToString()), Convert.ToInt32(dr["numero"].ToString()), Convert.ToInt32(dr["cantidad"].ToString()), (dr["estado"].ToString()));
+
+                lista.Add(p);
+            }
+
+            dr.Close();
+            Conexion.Desconectar(c);
+
+            return lista;
+
 
         }
 

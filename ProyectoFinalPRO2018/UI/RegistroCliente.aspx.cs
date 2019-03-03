@@ -38,5 +38,6 @@ public partial class RegistroCliente : System.Web.UI.Page
         {
             lblError.Text = ex.Message;
         }
+
     }
 }

@@ -11,7 +11,7 @@ namespace EntidadesCompartidas
         private Cliente _cliente;
         private int _codigo;
         private int _cantidad;
-        private byte _estado;
+        private string _estado;
 
         public Medicamento Medicamento
         {
@@ -69,7 +69,7 @@ namespace EntidadesCompartidas
             }
         }
 
-        public byte Estado
+        public string Estado
         {
             get
             {
@@ -77,13 +77,13 @@ namespace EntidadesCompartidas
             }
             set
             {
-                if (value != 1 || value != 2 || value != 3)
+                if (value != ("Generado") && value != ("Enviado") && value != ("Entregado"))
                     throw new Exception("Error desconocido.");
                 _estado = value;
             }
         }
 
-        public Pedido(Medicamento pMedicamento, Cliente pCliente, int pCodigo, int pCantidad, byte pEstado)
+        public Pedido(Medicamento pMedicamento, Cliente pCliente, int pCodigo, int pCantidad, string pEstado)
         {
             Medicamento = pMedicamento;
             Cliente = pCliente;

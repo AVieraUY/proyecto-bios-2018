@@ -29,11 +29,11 @@ namespace Negocio
             return p;
         }
 
-        public static List<Pedido> ListarPorMedicamento(Medicamento med)
+        public static List<Pedido> ListarPorMedicamento(Medicamento med, string estado)
         {
             perPedido pp = new perPedido();
 
-            return pp.ListarPorMedicamento(med);
+            return pp.ListarPorMedicamento(med, estado);
         }
 
         public static List<Pedido> ListarPorEstado(Pedido p)
@@ -51,8 +51,15 @@ namespace Negocio
         public static void CambiarEstado(Pedido pPedido)
         {
             perPedido pp = new perPedido();
+            pp.CambiarEstado(pPedido);
             
-
         }
+        public static List<Pedido> ListarPedido()
+        {
+            perPedido pp = new perPedido();
+
+            return pp.ListarPedido();
+        }
+
     }
 }

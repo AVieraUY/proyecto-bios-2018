@@ -32,6 +32,7 @@ public partial class ListadoMedyPed : System.Web.UI.Page
     {
         try
         {
+            ddlEstado.Visible = false;
             Farmaceutica f = negFarmaceutica.Buscar(Convert.ToInt64(ddl.SelectedValue));
             Session["farmaceutica"] = f;
 
@@ -47,18 +48,73 @@ public partial class ListadoMedyPed : System.Web.UI.Page
     }
     protected void grdMedicamentos_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
+            ddlEstado.Visible = true;
+            lblError.Text = string.Empty;
             Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
             Medicamento m = negMedicamento.Buscar(f, Convert.ToInt32(grdMedicamentos.SelectedRow.Cells[1].Text));
 
-            GridView1.DataSource = negPedido.ListarPorMedicamento(m);
+            Session["m"] = m;
+            GridView1.DataSource = negPedido.ListarPorMedicamento(m, "Todos");
             GridView1.DataBind();
-            
-        //}
-        //catch (Exception ex)
-        //{
-        //    lblError.Text = ex.Message;
-        //}
+            if (negPedido.ListarPorMedicamento(m, "Todos").Count == 0)
+                throw new Exception("No se encontraron pedidos de este medicamento");
+
+
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+    protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            Medicamento m = (Medicamento)Session["m"];
+
+            if (ddlEstado.SelectedIndex == 0)
+            {
+                lblError.Text = string.Empty;
+                List<Pedido> lp = negPedido.ListarPorMedicamento(m, "Todos");
+                
+                GridView1.DataSource = lp;
+                GridView1.DataBind();
+
+                if (lp.Count == 0)
+                    throw new Exception("No se encontraron pedidos de este medicamento");
+            }
+
+            else if (ddlEstado.SelectedIndex == 1)
+            {
+                lblError.Text = string.Empty;
+                List<Pedido> lp = negPedido.ListarPorMedicamento(m, "Generado");
+
+                GridView1.DataSource = lp;
+                GridView1.DataBind();
+
+
+                if (lp.Count == 0)
+                    throw new Exception("No se encontraron pedidos con estado generado de este medicamento");
+            }
+
+            else if (ddlEstado.SelectedIndex == 0)
+            {
+                lblError.Text = string.Empty;
+                List<Pedido> lp = negPedido.ListarPorMedicamento(m, "Entregado");
+
+                GridView1.DataSource = lp;
+                GridView1.DataBind();
+
+
+                if (lp.Count == 0)
+                    throw new Exception("No se encontraron pedidos entregados de este medicamento");
+            }
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
     }
 }

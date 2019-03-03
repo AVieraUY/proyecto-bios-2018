@@ -10,24 +10,22 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <p>
-        <br />
         <table style="width:100%;">
-            <tr>
-                <td class="style1">
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-            </tr>
             <tr>
                 <td class="style1">
                     <asp:GridView ID="grd" runat="server" BackColor="White" BorderColor="#999999" 
                         BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" 
-                        GridLines="Vertical">
+                        GridLines="Vertical" AutoGenerateColumns="False" 
+                        onselectedindexchanged="grd_SelectedIndexChanged">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
-                            <asp:ButtonField ButtonType="Button" Text="Cambiar estado" />
+                            <asp:BoundField DataField="codigo" HeaderText="Código" />
+                            <asp:BoundField DataField="Medicamento.nombre" HeaderText="Medicamento" />
+                            <asp:BoundField DataField="Cliente.userName" HeaderText="Cliente" />
+                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+                            <asp:BoundField DataField="estado" HeaderText="Estado" />
+                            <asp:CommandField ButtonType="Button" SelectText="Cambiar Estado" 
+                                ShowSelectButton="True" />
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

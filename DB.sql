@@ -19,7 +19,6 @@ foreign key(rut) references farmaceutica (rut),
 primary key(codigo, rut)
 )
 go
-
 create table Usuario(
 userName varchar(20) primary key,
 nombre varchar(20) not null,
@@ -53,7 +52,7 @@ codMedicamento int not null,
 rut bigint,
 userName varchar(20) not null,
 cantidad int not null,
-estado varchar(10) not null,
+estado varchar (9) not null,
 foreign key (userName) references Cliente (userName),
 foreign key (codMedicamento,rut) references Medicamento (codigo,rut)
 )
@@ -77,7 +76,7 @@ insert into Usuario values('usuario','user','Empleado','password')
 insert into Usuario values('empleado','Empleado','test','password')
 insert into Usuario values('cliente','Cliente','test','password')
 insert into Usuario values('aviera','Agustin','Viera','123456')
-insert into Usuario values('agunz','Abril','Gunz','123456')
+insert into Usuario values('abrilg','Abril','Ganz','123456')
 insert into Usuario values('dgonzalez','Diego','Gonzalez','123456')
 go
 insert into Empleado values('usuario','09:00','18:00')
@@ -85,10 +84,10 @@ insert into Empleado values('empleado','12:00','18:00')
 
 insert into Cliente values('cliente','Bv. Artigas','099123456')
 insert into Cliente values('aviera','Rocha','098654321')
-insert into Cliente values('agunz','18 de julio','26221324')
+insert into Cliente values('abrilg','18 de julio','26221324')
 insert into Cliente values('dgonzalez','Rivera','099456789')
 
-insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(1,123456789012,'agunz',5,'Entregado')
+insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(1,123456789012,'abrilg',5,'Entregado')
 insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(2,123456789012,'dgonzalez',2,'Entregado')
 insert into Pedido(codMedicamento,rut,userName,cantidad,estado) values(2,111111111111,'cliente',3,'Entregado')
 
@@ -327,7 +326,7 @@ return -2
 if (@cantidad < 1)
 return -3
 begin try
-insert into Pedido (codMedicamento,rut,userName,cantidad,estado ) values (@codMedicamento,@rut,@userName,@cantidad,'generado')
+insert into Pedido (codMedicamento,rut,userName,cantidad,estado ) values (@codMedicamento,@rut,@userName,@cantidad,'Generado')
 return 1
 end try
 begin catch
@@ -339,7 +338,7 @@ create proc EliminarPedido
 as
 if (not exists (select * from Pedido where numero = @numero))
 return -1
-if (not ((select estado from Pedido where numero = @numero) = 'generado'))
+if (not ((select estado from Pedido where numero = @numero) = 'Generado'))
 return -2
 begin try
 delete Pedido where @numero = numero
@@ -357,15 +356,15 @@ go
 create proc CambiarEstado
 @num int
 as
-if((select estado from Pedido where numero = @num ) ='entregado')
+if((select estado from Pedido where numero = @num ) ='Entregado')
 return -1
-if((select estado from Pedido where numero = @num ) not in('generado','enviado'))
+if((select estado from Pedido where numero = @num ) not in('Generado','Eviado'))
 return -2
 begin try
-if ((select estado from Pedido where numero = @num ) ='generado')
-update Pedido set estado = 'enviado' where numero = @num
+if ((select estado from Pedido where numero = @num ) ='Generado')
+update Pedido set estado = 'Enviado' where numero = @num
 else
-update Pedido set estado = 'entregado' where numero = @num
+update Pedido set estado = 'Entregado' where numero = @num
 return 1
 end try
 begin catch
@@ -374,28 +373,33 @@ end catch
 go
 
 create proc ListarPedido
-@estado int
+as
+select * from Pedido
+go 
+
+create proc ListarporEstado
+@estado varchar(9)
 as
 if (@estado = 0)
 select * 
 from Pedido 
 else if (@estado = 1)
-select * from Pedido where estado ='generado' order by numero
+select * from Pedido where estado ='Generado' order by numero
 else if (@estado = 2)
-select * from Pedido where estado ='entregado' order by numero
+select * from Pedido where estado ='Entregado' order by numero
 else if (@estado = 3)
-select * from pedido where  estado = 'generado' or  estado = 'enviado' order by numero
+select * from pedido where  estado = 'Generado' or  estado = 'Enviado' order by numero
 go
 
 create proc PedidosporMedicamento
-@codMed int , @rut bigint
+@codMed int , @rut bigint , @estado varchar (9)
 as
 select * from Pedido where  codMedicamento = @codMed and rut = @rut
 go
 create proc PedidosGeneradosxCliente
 @user varchar
 as
-select * from Pedido where estado = 'generado' and userName = @user
+select * from Pedido where estado = 'Generado' and userName = @user
 go
 
 
@@ -408,4 +412,3 @@ from Usuario u
 where @userName = u.userName
 and @password = u.pass
 go
-select * from Usuario

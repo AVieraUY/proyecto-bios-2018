@@ -13,7 +13,24 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
     {
         try
         {
+            grd.DataSource = negPedido.ListarPedido();
+            grd.DataBind();
             
+        }
+        catch (Exception ex)
+        {
+            lblError.Text = ex.Message;
+        }
+    }
+    protected void grd_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            Pedido p = negPedido.Buscar(Convert.ToInt32(grd.SelectedRow.Cells[0].Text));
+            negPedido.CambiarEstado(p);
+
+            grd.DataSource = negPedido.ListarPedido();
+            grd.DataBind();
         }
         catch (Exception ex)
         {

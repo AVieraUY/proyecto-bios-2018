@@ -170,8 +170,6 @@ namespace Persistencia
 
             while(dr.Read())
             {
-               // Farmaceutica f = 
-                //Farmaceutica f = new Farmaceutica(Convert.ToInt64(dr["rut"].ToString()), dr["nombre"].ToString(), dr["mail"].ToString(), dr["direccion"].ToString());
                 Medicamento m = new Medicamento(perf.Buscar(Convert.ToInt64(dr["rut"].ToString())), Convert.ToInt32(dr["codigo"].ToString()), dr["nombre"].ToString(), dr["descipcion"].ToString(), Convert.ToDecimal(dr["precio"].ToString()));
                 lista.Add(m);
             }
