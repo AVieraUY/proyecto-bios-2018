@@ -28,10 +28,12 @@ public partial class _Default : System.Web.UI.Page
             Usuario u = negUsuario.Login(txtUsername.Text, txtPassword.Text);
             if(u is Cliente)
             {
+                Session["usuario"] = (Cliente)u;
                 Response.Redirect(Page.ResolveUrl("~/RealizarPedido.aspx"));
             }
             else if(u is Empleado)
             {
+                Session["usuario"] = (Empleado)u;
                 Response.Redirect(Page.ResolveUrl("~/BienvenidaEmpleado.aspx"));
             }
             else
@@ -44,4 +46,28 @@ public partial class _Default : System.Web.UI.Page
             lblError.Text = ex.Message;
         }
     }
+
+    //protected void lbtnRegistro_Click(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        Response.Redirect(Page.ResolveUrl("~/RegistroCliente.aspx"));
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        lblError.Text = ex.Message;
+    //    }
+    //}
+
+    //protected void lbtnConsulta_Click(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        Response.Redirect(Page.ResolveUrl("~/ConsultaEstadoPedido.aspx"));
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        lblError.Text = ex.Message;
+    //    }
+    //}
 }

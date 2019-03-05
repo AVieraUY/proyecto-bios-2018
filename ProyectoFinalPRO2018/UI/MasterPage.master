@@ -14,6 +14,8 @@
         <br />
         <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
             <Items>
+                <asp:MenuItem Text="Principal" Value="Principal" 
+                    NavigateUrl="~/BienvenidaEmpleado.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="Mantenimiento" Value="Mantenimiento">
                     <asp:MenuItem Text="Empleados" Value="Empleados" 
                         NavigateUrl="~/ABMEmpleados.aspx"></asp:MenuItem>
