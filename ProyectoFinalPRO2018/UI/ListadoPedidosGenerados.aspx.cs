@@ -11,6 +11,10 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["usuario"] is Empleado)
+            Response.Redirect("BienvenidaEmpleado.aspx");
+        else if (!(Session["usuario"] is Cliente))
+            Response.Redirect("Logueo.aspx");
         try
         {
             //Cliente cli = (Cliente)Session["usuario"];

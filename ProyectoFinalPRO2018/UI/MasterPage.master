@@ -7,12 +7,40 @@
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            height: 23px;
+        }
+        .style2
+        {
+            height: 25px;
+        }
+        .style3
+        {
+            height: 23px;
+            width: 777px;
+        }
+        .style4
+        {
+            height: 25px;
+            width: 777px;
+        }
+        .style5
+        {
+            width: 777px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
         <br />
-        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+        <br />
+        <table style="width:100%;">
+            <tr>
+                <td class="style3">
+        <asp:Menu ID="MenuEmp" runat="server" Orientation="Horizontal" Visible="False">
             <Items>
                 <asp:MenuItem Text="Principal" Value="Principal" 
                     NavigateUrl="~/BienvenidaEmpleado.aspx"></asp:MenuItem>
@@ -27,8 +55,6 @@
                 <asp:MenuItem Text="Pedido" Value="Pedido">
                     <asp:MenuItem Text="Cambiar Estado" Value="Cambiar Estado" 
                         NavigateUrl="~/CambioEstadoPedido.aspx"></asp:MenuItem>
-                    <asp:MenuItem Text="Consultar Estado" Value="Consultar Estado" 
-                        NavigateUrl="~/ConsultaEstadoPedido.aspx"></asp:MenuItem>
                     <asp:MenuItem Text="Rrealizar Pedido" Value="Rrealizar Pedido" 
                         NavigateUrl="~/RealizarPedido.aspx"></asp:MenuItem>
                 </asp:MenuItem>
@@ -39,11 +65,40 @@
                     <asp:MenuItem Text="Pedidos Generados" Value="Pedidos Generados" 
                         NavigateUrl="~/ListadoPedidosGenerados.aspx"></asp:MenuItem>
                 </asp:MenuItem>
-                <asp:MenuItem Text="Registro Cliente" Value="Registro Cliente" 
-                    NavigateUrl="~/RegistroCliente.aspx"></asp:MenuItem>
             </Items>
         </asp:Menu>
-        <br />
+                </td>
+                <td class="style1">
+                            <asp:HyperLink ID="hlConsulta" runat="server" NavigateUrl="~/ConsultaEstadoPedido.aspx">Consultar pedido</asp:HyperLink>
+                </td>
+            </tr>
+            <tr>
+                <td class="style4">
+        <asp:Menu ID="MenuCli" runat="server" Orientation="Horizontal" Visible="False">
+            <Items>
+                <asp:MenuItem Text="Principal" Value="Principal" 
+                    NavigateUrl="~/BienvenidaEmpleado.aspx"></asp:MenuItem>
+                <asp:MenuItem Text="Pedido" Value="Pedido">
+                    <asp:MenuItem Text="Pedidos Generados" Value="Pedidos Generados" 
+                        NavigateUrl="~/ListadoPedidosGenerados.aspx"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Text="Listados" Value="Listados">
+                    <asp:MenuItem Text="Rrealizar Pedido" Value="Rrealizar Pedido" 
+                        NavigateUrl="~/RealizarPedido.aspx"></asp:MenuItem>
+                </asp:MenuItem>
+            </Items>
+        </asp:Menu>
+                </td>
+                <td class="style2">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="style5">
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+        </table>
         <br />
         <br />
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">

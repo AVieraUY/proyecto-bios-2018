@@ -11,6 +11,8 @@ public partial class ABMEmpleados : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if  (!(Session["usuario"] is Empleado))
+            Response.Redirect("Logueo.aspx");
         if (!IsPostBack)
         {
           Limpiar();

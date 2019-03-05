@@ -374,7 +374,7 @@ go
 
 create proc ListarPedido
 as
-select * from Pedido
+select * from Pedido where estado = 'generado' or estado = 'enviado'
 go 
 
 --create proc ListarporEstado
@@ -408,12 +408,22 @@ as
 select * from Pedido where estado = 'Generado' and userName = @user
 go
 
-create proc Login
+create proc LoginCliente
 @userName varchar(20),
 @password varchar(20)
 as
 select *
-from Usuario u
+from Cliente c inner join Usuario u on  c.userName = u.userName
 where @userName = u.userName
-and @password = u.pass
+and @password =  u.pass
+go
+
+create proc LoginEmpleado
+@userName varchar(20),
+@password varchar(20)
+as
+select *
+from Empleado e inner join Usuario u on  e.userName = u.userName
+where @userName = u.userName
+and @password =  u.pass
 go

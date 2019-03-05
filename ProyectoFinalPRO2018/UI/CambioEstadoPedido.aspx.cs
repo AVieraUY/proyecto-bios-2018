@@ -11,6 +11,8 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!(Session["usuario"] is Empleado))
+            Response.Redirect("Logueo.aspx");
         try
         {
             grd.DataSource = negPedido.ListarPedido();
