@@ -358,13 +358,11 @@ create proc CambiarEstado
 as
 if((select estado from Pedido where numero = @num ) ='Entregado')
 return -1
-if((select estado from Pedido where numero = @num ) not in('Generado','Eviado'))
-return -2
 begin try
 if ((select estado from Pedido where numero = @num ) ='Generado')
 update Pedido set estado = 'Enviado' where numero = @num
 else
-update Pedido set estado = 'Entregado' where numero = @num
+update Pedido set estado = 'Entregado' where numero = @num 
 return 1
 end try
 begin catch
@@ -377,19 +375,6 @@ as
 select * from Pedido where estado = 'generado' or estado = 'enviado'
 go 
 
---create proc ListarporEstado
---@estado varchar(9)
---as
---if (@estado = 0)
---select * 
---from Pedido 
---else if (@estado = 1)
---select * from Pedido where estado ='Generado' order by numero
---else if (@estado = 2)
---select * from Pedido where estado ='Entregado' order by numero
---else if (@estado = 3)
---select * from pedido where  estado = 'Generado' or  estado = 'Enviado' order by numero
---go
 
 create proc PedidosporMedicamento
 @codMed int , @rut bigint , @estado varchar (9)

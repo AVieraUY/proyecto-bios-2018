@@ -28,9 +28,6 @@ namespace Negocio
 
             Medicamento m = pm.Buscar(pFarmaceutica, pCodigo);
 
-           // if (m.Equals(null))
-          //      throw new Exception("No existe el medicamento, complete los datos para registrar uno nuevo.");
-
             return m;
         }
 

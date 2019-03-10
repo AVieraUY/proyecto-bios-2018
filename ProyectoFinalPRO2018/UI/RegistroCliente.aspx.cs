@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio;
 using EntidadesCompartidas;
+using Negocio;
 
-public partial class RegistroCliente : System.Web.UI.Page
+public partial class RegistroCliente2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {

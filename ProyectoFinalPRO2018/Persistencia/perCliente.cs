@@ -21,7 +21,6 @@ namespace Persistencia
             cmd.Parameters.Add(new SqlParameter("apellido", pCliente.Apellido));
             cmd.Parameters.Add(new SqlParameter("direccion", pCliente.DireccionEntrega));
             cmd.Parameters.Add(new SqlParameter("telefono", pCliente.Telefono));
-            //cmd.Parameters.Add(new SqlParameter("tipo", 1));
 
             SqlParameter r = new SqlParameter();
             r.Direction = ParameterDirection.ReturnValue;

@@ -50,7 +50,6 @@ public partial class ListadoMedyPed : System.Web.UI.Page
     {
         try
         {
-            ddlEstado.Visible = true;
             ddlEstado.SelectedIndex = 0;
             lblError.Text = string.Empty;
             Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
@@ -61,6 +60,7 @@ public partial class ListadoMedyPed : System.Web.UI.Page
             GridView1.DataBind();
             if (negPedido.ListarPorMedicamento(m, "Todos").Count == 0)
                 throw new Exception("No se encontraron pedidos de este medicamento");
+            ddlEstado.Visible = true;
 
 
         }

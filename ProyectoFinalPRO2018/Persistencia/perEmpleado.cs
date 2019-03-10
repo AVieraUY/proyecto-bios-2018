@@ -64,7 +64,8 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                emp = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), dr["horaInicio"].ToString(), (dr["horaFin"].ToString()));
+                string hi = dr["horaInicio"].ToString().Remove(3);
+                emp = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), dr["horaInicio"].ToString().Remove(5) ,(dr["horaFin"].ToString().Remove(5)));
             }
 
             dr.Close();
@@ -102,7 +103,7 @@ namespace Persistencia
                     {
                         throw new Exception("No existe el empleado.");
                     }
-                case 0:
+                case 1:
                     {
                         break;
                     }
@@ -129,7 +130,7 @@ namespace Persistencia
 
             while(dr.Read())
             {
-                e = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), dr["horaInicio"].ToString(), dr["horaFin"].ToString());
+                e = new Empleado(dr["userName"].ToString(), dr["pass"].ToString(), dr["nombre"].ToString(), dr["apellido"].ToString(), dr["horaInicio"].ToString().Remove(5), dr["horaFin"].ToString().Remove(5));
             }
 
             Conexion.Desconectar(c);

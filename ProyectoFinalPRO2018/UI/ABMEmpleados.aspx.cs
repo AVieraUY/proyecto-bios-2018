@@ -16,7 +16,8 @@ public partial class ABMEmpleados : System.Web.UI.Page
         if (!IsPostBack)
         {
           Limpiar();
-        }
+        }  
+     
     }
     private void Limpiar()
     {
@@ -25,8 +26,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
         txtNCompleto.Text = string.Empty;
         txtNombre.Text = string.Empty;
         txtUsuario.Text = string.Empty;
-        txtHIngreso.Text = string.Empty;
+        txtHIngreso1.Text = string.Empty;
+        txtHoraIngreso2.Text = string.Empty;
         txtHSalida.Text = string.Empty;
+        txtHSalida2.Text = string.Empty;
 
         btnAgregar.Enabled = false;
         btnEliminar.Enabled = false;
@@ -36,8 +39,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
         txtContraseña.Enabled = false;
         txtNCompleto.Enabled = false;
         txtNombre.Enabled = false;
-        txtHIngreso.Enabled = false;
+        txtHIngreso1.Enabled = false;
+        txtHoraIngreso2.Enabled = false;
         txtHSalida.Enabled = false;
+        txtHSalida2.Enabled = false;
 
         lblError.Text = string.Empty;
     }
@@ -50,8 +55,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
         txtContraseña.Enabled = true;
         txtNCompleto.Enabled = true;
         txtNombre.Enabled = true;
-        txtHIngreso.Enabled = true;
+        txtHIngreso1.Enabled = true;
+        txtHoraIngreso2.Enabled = true;
         txtHSalida.Enabled = true;
+        txtHSalida2.Enabled = true;
     }
     private void NoEncontrado()
     {
@@ -61,8 +68,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
         txtContraseña.Enabled = true;
         txtNCompleto.Enabled = true;
         txtNombre.Enabled = true;
-        txtHIngreso.Enabled = true;
+        txtHIngreso1.Enabled = true;
+        txtHoraIngreso2.Enabled = true;
         txtHSalida.Enabled = true;
+        txtHSalida2.Enabled = true;
 
         btnAgregar.Enabled = true;
     }
@@ -74,7 +83,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
-            Empleado emp = new Empleado(txtNombre.Text, txtContraseña.Text, txtNCompleto.Text, txtApellido.Text, txtHIngreso.Text, txtHSalida.Text);
+            if (Convert.ToInt32(txtHIngreso1.Text) > 60 || Convert.ToInt32(txtHSalida.Text) > 60 || Convert.ToInt32(txtHSalida2.Text) > 23 || Convert.ToInt32(txtHoraIngreso2.Text) > 23)
+                throw new Exception("Hora inválida");
+
+            Empleado emp = new Empleado(txtNombre.Text, txtContraseña.Text, txtNCompleto.Text, txtApellido.Text, (txtHIngreso1.Text + ":" + txtHoraIngreso2.Text), txtHSalida.Text + ":" + txtHSalida2.Text);
 
             negUsuario.Alta(emp);
 
@@ -94,11 +106,13 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
+            if (Convert.ToInt32(txtHIngreso1.Text) > 60 || Convert.ToInt32(txtHSalida.Text) > 60 || Convert.ToInt32(txtHSalida2.Text) > 23 || Convert.ToInt32(txtHoraIngreso2.Text) > 23)
+                throw new Exception("Hora inválida");
             Empleado emp = (Empleado)Session["empleado"];
 
             emp.Apellido = txtApellido.Text;
-            emp.HoraFin = txtHSalida.Text;
-            emp.HoraInicio = txtHIngreso.Text;
+            emp.HoraFin = txtHSalida.Text + ":" + txtHSalida2.Text;
+            emp.HoraInicio = txtHIngreso1.Text + ":" + txtHoraIngreso2.Text;
             emp.Nombre = txtNombre.Text;
             emp.NombreCompleto = txtNCompleto.Text;
             emp.Password = txtContraseña.Text;
@@ -128,8 +142,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
            else
            {
                txtApellido.Text = emp.Apellido;
-               txtHSalida.Text = emp.HoraFin;
-               txtHIngreso.Text = emp.HoraInicio;
+               txtHSalida.Text = emp.HoraFin.Substring(0, 2);
+               txtHSalida2.Text = emp.HoraFin.Substring(3);
+               txtHIngreso1.Text = emp.HoraInicio.Substring(0,2);
+               txtHoraIngreso2.Text = emp.HoraInicio.Substring(3);
                txtNombre.Text = emp.Nombre;
                txtNCompleto.Text = emp.NombreCompleto;
                txtContraseña.Text = emp.Password;
@@ -162,6 +178,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
         {
             lblError.Text = ex.Message;
         }
+
+    }
+    protected void txtHIngreso2_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

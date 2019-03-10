@@ -237,6 +237,8 @@ namespace Persistencia
 
                 case 1:
                     {
+                        if (pPedido.Estado == "Enviado")
+                            throw new Exception("El pedido fue entregado");
                         break;
                     }
                 default:
@@ -274,8 +276,5 @@ namespace Persistencia
 
 
         }
-
-
-
     }
 }

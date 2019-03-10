@@ -12,7 +12,25 @@
     <p>
         <table style="width:100%;">
             <tr>
-                <td class="style1">
+                <td>
+                    <asp:Label ID="Label1" runat="server" Font-Size="XX-Large" ForeColor="#000099" 
+                        Text="Cambiar estado de pedido"></asp:Label>
+                </td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td>
                     <asp:GridView ID="grd" runat="server" BackColor="White" BorderColor="#999999" 
                         BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" 
                         GridLines="Vertical" AutoGenerateColumns="False" 
@@ -36,24 +54,8 @@
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
-                </td>
-                <td>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                     <asp:Label ID="lblError" runat="server"></asp:Label>
                 </td>
-                <td>
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style1">
-                    &nbsp;</td>
                 <td>
                     &nbsp;</td>
                 <td>
@@ -61,9 +63,5 @@
             </tr>
         </table>
     </p>
-    <p>
-    </p>
-    <p>
-    </p>
-</asp:Content>
+    </asp:Content>
 

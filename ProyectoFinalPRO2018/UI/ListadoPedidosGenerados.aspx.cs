@@ -17,7 +17,6 @@ public partial class ListadoPedidosGenerados : System.Web.UI.Page
             Response.Redirect("Logueo.aspx");
         try
         {
-            //Cliente cli = (Cliente)Session["usuario"];
             Cliente cli = (Cliente)negUsuario.Buscar("cliente");
             grdPedidos.DataSource = negPedido.ListarPorCliente(cli);
             grdPedidos.DataBind();

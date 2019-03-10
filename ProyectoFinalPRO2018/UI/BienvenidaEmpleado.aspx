@@ -2,55 +2,46 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
-        .style1
-        {
-            width: 138px;
-        }
-        .style2
-        {
-            width: 214px;
-        }
-        .centrar
-        {
-		    position: absolute;
-		    top:50%;
-		    left:50%;
-		    width:400px;
-		    margin-left:-200px;
-		    height:300px;
-		    margin-top:-150px;
-        }
+
+    .style7
+    {
+        width: 219px;
+        text-align: center;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="centrar">
-        <table>
-            <tr>
-                <td>
-                    <asp:HyperLink ID="hlFarmacias" runat="server" NavigateUrl="~/ABMFarmacéuticas.aspx">ABM Farmacias</asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:HyperLink ID="hlMedicamentos" runat="server" NavigateUrl="~/ABMMedicamentos.aspx">ABM Medicamentos</asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:HyperLink ID="hlEmpleados" runat="server" NavigateUrl="~/ABMEmpleados.aspx">ABM Empleados</asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:HyperLink ID="hlCambio" runat="server" NavigateUrl="~/CambioEstadoPedido.aspx">Cambiar estado de pedido</asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:HyperLink ID="hlListado" runat="server" NavigateUrl="~/ListadoMedyPed.aspx">Listado de medicamentos y pedidos</asp:HyperLink>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <table align="left" style="width: 373px; margin-left: 244px">
+        <tr>
+            <td class="style7">
+                <asp:HyperLink ID="hlFarmacias" runat="server" 
+                        NavigateUrl="~/ABMFarmacéuticas.aspx" Font-Size="20pt">ABM Farmacias</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td class="style7">
+                <asp:HyperLink ID="hlMedicamentos" runat="server" 
+                        NavigateUrl="~/ABMMedicamentos.aspx" Font-Size="20pt">ABM Medicamentos</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td class="style7">
+                <asp:HyperLink ID="hlEmpleados" runat="server" 
+                        NavigateUrl="~/ABMEmpleados.aspx" Font-Size="20pt">ABM Empleados</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td class="style7">
+                <asp:HyperLink ID="hlCambio" runat="server" 
+                        NavigateUrl="~/CambioEstadoPedido.aspx" Font-Size="20pt">Cambiar estado de pedido</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td class="style7">
+                <asp:HyperLink ID="hlListado" runat="server" 
+                        NavigateUrl="~/ListadoMedyPed.aspx" Font-Size="20pt">Listado de medicamentos y pedidos</asp:HyperLink>
+            </td>
+        </tr>
+    </table>
 </asp:Content>
 

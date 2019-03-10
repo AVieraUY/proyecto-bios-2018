@@ -12,6 +12,7 @@ namespace Negocio
         public static void Alta(Pedido pPedido)
         {
             perPedido pp = new perPedido();
+            pp.Alta(pPedido);
 
         }
         public static void Baja(Pedido pPedido)

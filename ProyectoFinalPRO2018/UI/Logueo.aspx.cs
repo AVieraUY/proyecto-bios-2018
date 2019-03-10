@@ -45,29 +45,5 @@ public partial class _Default : System.Web.UI.Page
         {
             lblError.Text = ex.Message;
         }
-    }
-
-    //protected void lbtnRegistro_Click(object sender, EventArgs e)
-    //{
-    //    try
-    //    {
-    //        Response.Redirect(Page.ResolveUrl("~/RegistroCliente.aspx"));
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        lblError.Text = ex.Message;
-    //    }
-    //}
-
-    //protected void lbtnConsulta_Click(object sender, EventArgs e)
-    //{
-    //    try
-    //    {
-    //        Response.Redirect(Page.ResolveUrl("~/ConsultaEstadoPedido.aspx"));
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        lblError.Text = ex.Message;
-    //    }
-    //}
+    }    
 }

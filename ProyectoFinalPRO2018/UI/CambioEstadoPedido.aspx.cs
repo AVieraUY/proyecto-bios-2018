@@ -15,7 +15,12 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
             Response.Redirect("Logueo.aspx");
         try
         {
-            grd.DataSource = negPedido.ListarPedido();
+            List<Pedido> lp = negPedido.ListarPedido();
+
+            if (lp.Count == 0)
+                throw new Exception("No hay pedidos con estado generado o enviado.");
+
+            grd.DataSource = lp;
             grd.DataBind();
             
         }
@@ -28,10 +33,16 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
     {
         try
         {
+            lblError.Text = string.Empty;
             Pedido p = negPedido.Buscar(Convert.ToInt32(grd.SelectedRow.Cells[0].Text));
             negPedido.CambiarEstado(p);
+            
+            List<Pedido> lp = negPedido.ListarPedido();
 
-            grd.DataSource = negPedido.ListarPedido();
+            if (lp.Count == 0)
+                throw new Exception("No hay pedidos con estado generado o enviado.");
+
+            grd.DataSource = lp;
             grd.DataBind();
         }
         catch (Exception ex)

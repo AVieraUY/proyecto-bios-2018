@@ -105,6 +105,7 @@ public partial class ABMFarmacéuticas : System.Web.UI.Page
             Session["farmaceutica"] = f;
 
             Limpiar();
+            lblError.Text = "Farmacéutica agregada con éxito.";
         }
         catch (Exception ex)
         {

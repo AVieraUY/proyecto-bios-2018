@@ -65,13 +65,13 @@ namespace Negocio
 
             u = pc.Login(pUsername, pPassword);
 
-            if (u.Equals(null))
+            if (u == null)
             {
                 perEmpleado pe = new perEmpleado();
 
                 u = pe.Login(pUsername, pPassword);
 
-                if (u.Equals(null))
+                if (u == null)
                     throw new Exception("Usuario y/o contraseña incorrectos.");
             }
 

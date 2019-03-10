@@ -73,7 +73,7 @@ public partial class RealizarPedido : System.Web.UI.Page
             Medicamento med = (Medicamento)Session["med"];
             Cliente cli = (Cliente)Session["usuario"];
 
-            Pedido pe = new Pedido(med, cli, 0, Convert.ToInt32(txtCantidad.Text), "Generado");
+            Pedido pe = new Pedido(med, cli, 1, Convert.ToInt32(txtCantidad.Text), "Generado");
 
             negPedido.Alta(pe);
 
@@ -84,6 +84,7 @@ public partial class RealizarPedido : System.Web.UI.Page
             btnListo.Visible = false;
             lblPrecio.Visible = false;
             BtnPedir.Visible = false;
+            grd1Med.Visible = false;
 
         }
         catch (Exception ex)
