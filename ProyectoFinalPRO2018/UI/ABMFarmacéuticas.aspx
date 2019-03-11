@@ -4,7 +4,7 @@
     <style type="text/css">
         .style1
         {
-            text-align: center;
+            text-align: left;
         }
         .style2
         {
@@ -24,14 +24,15 @@
         .style9
         {
             text-align: left;
+            width: 319px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <p style="width: 398px; height: 275px">
-        <table style="width:100%;">
+        <table style="width:45%;">
             <tr>
                 <td class="style1" colspan="3">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Label ID="Label5" runat="server" Font-Size="XX-Large" ForeColor="#000099" 
                         Text="ABM Farmacéutica"></asp:Label>
                 </td>
@@ -119,6 +120,5 @@
                     &nbsp;</td>
             </tr>
         </table>
-        </p>
-</asp:Content>
+        </asp:Content>
 

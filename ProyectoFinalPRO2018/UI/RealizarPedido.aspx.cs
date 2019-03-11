@@ -11,6 +11,7 @@ public partial class RealizarPedido : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        lblError.Text = string.Empty;
         if (Session["usuario"] is Empleado)
             Response.Redirect("BienvenidaEmpleado.aspx");
         else if(!(Session["usuario"] is Cliente))
@@ -35,6 +36,7 @@ public partial class RealizarPedido : System.Web.UI.Page
             lblPrecio.Visible = false;
             BtnPedir.Visible = false;
             txtCantidad.Text = string.Empty;
+            grd1Med.Visible = true;
 
             Medicamento med = negMedicamento.Listar()[grdMeds.SelectedRow.RowIndex];
             Session["med"] = med;

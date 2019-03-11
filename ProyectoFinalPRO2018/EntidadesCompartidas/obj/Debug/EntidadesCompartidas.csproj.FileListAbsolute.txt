@@ -17,3 +17,4 @@ C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\EntidadesCompa
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\EntidadesCompartidas\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
 C:\Users\sistemas\Desktop\proyecto-bios-2018\ProyectoFinalPRO2018\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
+C:\Git\proyecto-bios-2018\ProyectoFinalPRO2018\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csprojResolveAssemblyReference.cache

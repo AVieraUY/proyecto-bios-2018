@@ -54,8 +54,6 @@
             <DynamicMenuStyle BackColor="#B5C7DE" />
             <DynamicSelectedStyle BackColor="#507CD1" />
             <Items>
-                <asp:MenuItem Text="Principal" Value="Principal" 
-                    NavigateUrl="~/BienvenidaEmpleado.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="Pedido" Value="Pedido">
                     <asp:MenuItem Text="Pedidos Generados" Value="Pedidos Generados" 
                         NavigateUrl="~/ListadoPedidosGenerados.aspx"></asp:MenuItem>
@@ -78,6 +76,8 @@
                         <DynamicMenuStyle BackColor="#B5C7DE" />
                         <DynamicSelectedStyle BackColor="#507CD1" />
                         <Items>
+                            <asp:MenuItem NavigateUrl="~/BienvenidaEmpleado.aspx" Text="Principal" 
+                                Value="Principal"></asp:MenuItem>
                             <asp:MenuItem Text="ABM" Value="ABMs">
                                 <asp:MenuItem NavigateUrl="~/ABMEmpleados.aspx" Text="Empleado" 
                                     Value="Empleado"></asp:MenuItem>
