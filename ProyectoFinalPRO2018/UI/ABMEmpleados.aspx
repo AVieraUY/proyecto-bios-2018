@@ -28,7 +28,7 @@
         }
         .style13
         {
-            width: 23%;
+            width: 127%;
             height: 25px;
         }
         .style14
@@ -38,7 +38,7 @@
         }
         .style16
         {
-            width: 23%;
+            width: 127%;
         }
         .style18
         {
@@ -94,7 +94,8 @@
                     <asp:Label ID="Label1" runat="server" Text="Contraseña:"></asp:Label>
                 </td>
                 <td class="style18">
-                    <asp:TextBox ID="txtContraseña" runat="server" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="txtContraseña" runat="server" Enabled="False" 
+                        TextMode="Password"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                         ControlToValidate="txtContraseña" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
@@ -102,6 +103,20 @@
                 <td class="style16">
                     <asp:Button ID="btnLimpiar" runat="server" onclick="btnLimpiar_Click" 
                         Text="Limpiar" />
+                </td>
+            </tr>
+            <tr>
+                <td class="style19">
+                    ConfirmarContrsaseña:
+                </td>
+                <td class="style18">
+                    <asp:TextBox ID="txtContraseña0" runat="server" Enabled="False" 
+                        TextMode="Password"></asp:TextBox>
+                </td>
+                <td class="style13">
+                    <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                        ControlToCompare="txtContraseña" ControlToValidate="txtContraseña0" 
+                        ErrorMessage="Las contraseñas no coinciden" ValueToCompare="txtContraseña0"></asp:CompareValidator>
                 </td>
             </tr>
             <tr>
@@ -115,7 +130,7 @@
                         ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
                 <td class="style13">
-                    </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="style19">
@@ -136,9 +151,10 @@
                 </td>
                 <td class="style18">
                     <asp:TextBox ID="txtHIngreso1" runat="server" Enabled="False" ToolTip="00:00" 
-                        Width="26px"></asp:TextBox>
+                        Width="26px" MaxLength="2" ValidationGroup="H1"></asp:TextBox>
                     <asp:Label ID="Label9" runat="server" Text=":"></asp:Label>
-                    <asp:TextBox ID="txtHoraIngreso2" runat="server" Width="26px"></asp:TextBox>
+                    <asp:TextBox ID="txtHoraIngreso2" runat="server" Width="26px" MaxLength="2" 
+                        ValidationGroup="H2"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
                         ControlToValidate="txtHIngreso1" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
@@ -147,7 +163,14 @@
                         ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
                 <td class="style16">
-                    &nbsp;</td>
+                    <asp:RangeValidator ID="RangeValidator2" runat="server" 
+                        ControlToValidate="txtHoraIngreso2" Display="Dynamic" 
+                        ErrorMessage="Ingrese una hora valida" MaximumValue="59" MinimumValue="0" 
+                        Type="Integer"></asp:RangeValidator>
+&nbsp;<asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtHIngreso1" 
+                        Display="Dynamic" ErrorMessage="Ingrese una hora valida" MaximumValue="23" 
+                        MinimumValue="0" SetFocusOnError="True" Type="Integer" ValidationGroup="H1"></asp:RangeValidator>
+                </td>
             </tr>
             <tr>
                 <td class="style14">
@@ -155,9 +178,11 @@
                 </td>
                 <td class="style18">
                     <asp:TextBox ID="txtHSalida" runat="server" Enabled="False" ToolTip="00:00" 
-                        Width="26px" ontextchanged="txtHIngreso2_TextChanged"></asp:TextBox>
+                        Width="26px" ontextchanged="txtHIngreso2_TextChanged" MaxLength="2" 
+                        ValidationGroup="H1"></asp:TextBox>
                     <asp:Label ID="Label10" runat="server" Text=":"></asp:Label>
-                    <asp:TextBox ID="txtHSalida2" runat="server" Width="26px" Enabled="False"></asp:TextBox>
+                    <asp:TextBox ID="txtHSalida2" runat="server" Width="26px" Enabled="False" 
+                        MaxLength="2" ValidationGroup="H2"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" 
                         ControlToValidate="txtHSalida" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
@@ -165,6 +190,20 @@
                         ControlToValidate="txtHSalida2" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
+                <td class="style16">
+                    <asp:RangeValidator ID="RangeValidator3" runat="server" 
+                        ControlToValidate="txtHSalida" ErrorMessage="Ingrese una hora valida" 
+                        MaximumValue="23" MinimumValue="0" Type="Integer"></asp:RangeValidator>
+&nbsp;<asp:RangeValidator ID="RangeValidator4" runat="server" ControlToValidate="txtHSalida2" 
+                        ErrorMessage="Ingrese una hora valida" MaximumValue="59" MinimumValue="0" 
+                        Type="Integer"></asp:RangeValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="style14">
+                    &nbsp;</td>
+                <td class="style18">
+                    &nbsp;</td>
                 <td class="style16">
                     <asp:Label ID="lblError" runat="server"></asp:Label>
                 </td>

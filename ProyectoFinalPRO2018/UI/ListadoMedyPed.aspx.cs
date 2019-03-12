@@ -26,6 +26,15 @@ public partial class ListadoMedyPed : System.Web.UI.Page
                 lblError.Text = ex.Message;
             }
         }
+        GridView1.Visible = false;
+        ddlEstado.Visible = false;
+        Farmaceutica f = negFarmaceutica.Buscar(Convert.ToInt64(ddl.SelectedValue));
+        Session["farmaceutica"] = f;
+
+        List<Medicamento> lm = negMedicamento.ListarPorFarmaceutica(f);
+
+        grdMedicamentos.DataSource = lm;
+        grdMedicamentos.DataBind();
 
     }
     protected void ddl_SelectedIndexChanged(object sender, EventArgs e)

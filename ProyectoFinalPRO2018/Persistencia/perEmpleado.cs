@@ -21,7 +21,6 @@ namespace Persistencia
             cmd.Parameters.Add(new SqlParameter("apellido", pEmpleado.Apellido));
             cmd.Parameters.Add(new SqlParameter("horaInicio", pEmpleado.HoraInicio));
             cmd.Parameters.Add(new SqlParameter("horaFin", pEmpleado.HoraFin));
-            cmd.Parameters.Add(new SqlParameter("tipo", 2));
 
             SqlParameter r = new SqlParameter();
             r.Direction = ParameterDirection.ReturnValue;

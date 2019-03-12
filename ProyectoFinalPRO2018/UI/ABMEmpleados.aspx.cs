@@ -36,6 +36,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         txtApellido.Enabled = false;
         txtContraseña.Enabled = false;
+        txtContraseña0.Enabled = false;
         txtNombre.Enabled = false;
         txtHIngreso1.Enabled = false;
         txtHoraIngreso2.Enabled = false;
@@ -51,6 +52,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         txtApellido.Enabled = true;
         txtContraseña.Enabled = true;
+        txtContraseña0.Enabled = true;
         txtNombre.Enabled = true;
         txtHIngreso1.Enabled = true;
         txtHoraIngreso2.Enabled = true;
@@ -63,6 +65,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         txtApellido.Enabled = true;
         txtContraseña.Enabled = true;
+        txtContraseña0.Enabled = true;
         txtNombre.Enabled = true;
         txtHIngreso1.Enabled = true;
         txtHoraIngreso2.Enabled = true;
