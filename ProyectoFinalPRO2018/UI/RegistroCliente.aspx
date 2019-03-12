@@ -115,19 +115,6 @@
             </tr>
             <tr>
                 <td class="style3">
-                    <asp:Label ID="Label4" runat="server" Text="Nombre completo:"></asp:Label>
-                </td>
-                <td class="style2">
-                    <asp:TextBox ID="txtNCompleto" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
-                        ControlToValidate="txtNCompleto" ErrorMessage="*" ForeColor="Red" 
-                        ValidationGroup="A"></asp:RequiredFieldValidator>
-                </td>
-                <td>
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style3">
                     <asp:Label ID="Label6" runat="server" Text="Dirección de entrega:"></asp:Label>
                 </td>
                 <td class="style2">

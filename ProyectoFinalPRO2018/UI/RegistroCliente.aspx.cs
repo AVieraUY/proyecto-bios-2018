@@ -18,7 +18,6 @@ public partial class RegistroCliente2 : System.Web.UI.Page
         txtApellido.Text = string.Empty;
         txtContraseña.Text = string.Empty;
         txtDirEntrega.Text = string.Empty;
-        txtNCompleto.Text = string.Empty;
         txtNombre.Text = string.Empty;
         txtTel.Text = string.Empty;
         txtUsuario.Text = string.Empty;

@@ -64,6 +64,8 @@ public partial class ABMFarmacéuticas : System.Web.UI.Page
         lblError.Text = string.Empty;
         try
         {
+            if (txtRuc.Text.Length != 12)
+                throw new Exception("ingrese un Rut valido");
             Farmaceutica f = negFarmaceutica.Buscar(Convert.ToInt64(txtRuc.Text));
 
             if (f == null)

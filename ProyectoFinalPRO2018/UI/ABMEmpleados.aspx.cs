@@ -23,7 +23,6 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         txtApellido.Text = string.Empty;
         txtContraseña.Text = string.Empty;
-        txtNCompleto.Text = string.Empty;
         txtNombre.Text = string.Empty;
         txtUsuario.Text = string.Empty;
         txtHIngreso1.Text = string.Empty;
@@ -37,7 +36,6 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         txtApellido.Enabled = false;
         txtContraseña.Enabled = false;
-        txtNCompleto.Enabled = false;
         txtNombre.Enabled = false;
         txtHIngreso1.Enabled = false;
         txtHoraIngreso2.Enabled = false;
@@ -53,7 +51,6 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         txtApellido.Enabled = true;
         txtContraseña.Enabled = true;
-        txtNCompleto.Enabled = true;
         txtNombre.Enabled = true;
         txtHIngreso1.Enabled = true;
         txtHoraIngreso2.Enabled = true;
@@ -66,7 +63,6 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         txtApellido.Enabled = true;
         txtContraseña.Enabled = true;
-        txtNCompleto.Enabled = true;
         txtNombre.Enabled = true;
         txtHIngreso1.Enabled = true;
         txtHoraIngreso2.Enabled = true;
@@ -86,7 +82,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
             if (Convert.ToInt32(txtHIngreso1.Text) > 60 || Convert.ToInt32(txtHSalida.Text) > 60 || Convert.ToInt32(txtHSalida2.Text) > 23 || Convert.ToInt32(txtHoraIngreso2.Text) > 23)
                 throw new Exception("Hora inválida");
 
-            Empleado emp = new Empleado(txtNombre.Text, txtContraseña.Text, txtNCompleto.Text, txtApellido.Text, (txtHIngreso1.Text + ":" + txtHoraIngreso2.Text), txtHSalida.Text + ":" + txtHSalida2.Text);
+            Empleado emp = new Empleado(txtUsuario.Text, txtContraseña.Text,txtNombre.Text, txtApellido.Text, (txtHIngreso1.Text + ":" + txtHoraIngreso2.Text), txtHSalida.Text + ":" + txtHSalida2.Text);
 
             negUsuario.Alta(emp);
 
@@ -114,7 +110,6 @@ public partial class ABMEmpleados : System.Web.UI.Page
             emp.HoraFin = txtHSalida.Text + ":" + txtHSalida2.Text;
             emp.HoraInicio = txtHIngreso1.Text + ":" + txtHoraIngreso2.Text;
             emp.Nombre = txtNombre.Text;
-            emp.NombreCompleto = txtNCompleto.Text;
             emp.Password = txtContraseña.Text;
             emp.Username = txtUsuario.Text;
 
@@ -131,6 +126,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
     }
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
+        
         try
         {
            Empleado emp = (Empleado)negUsuario.Buscar(txtUsuario.Text);
@@ -147,7 +143,6 @@ public partial class ABMEmpleados : System.Web.UI.Page
                txtHIngreso1.Text = emp.HoraInicio.Substring(0,2);
                txtHoraIngreso2.Text = emp.HoraInicio.Substring(3);
                txtNombre.Text = emp.Nombre;
-               txtNCompleto.Text = emp.NombreCompleto;
                txtContraseña.Text = emp.Password;
                txtUsuario.Text = emp.Username;
               

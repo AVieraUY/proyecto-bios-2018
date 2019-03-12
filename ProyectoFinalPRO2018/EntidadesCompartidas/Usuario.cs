@@ -11,7 +11,6 @@ namespace EntidadesCompartidas
         private string _password;
         private string _nombre;
         private string _apellido;
-        private string _nombreCompleto;
 
         public string Username
         {
@@ -73,30 +72,17 @@ namespace EntidadesCompartidas
             }
         }
 
-        public string NombreCompleto
-        {
-            get
-            {
-                return _nombreCompleto;
-            }
-            set
-            {
-                _nombreCompleto = value.Trim();
-            }
-        }
-
         public Usuario(string pUsername, string pPassword, string pNombre, string pApellido)
         {
             Username = pUsername;
             Password = pPassword;
             Nombre = pNombre;
             Apellido = pApellido;
-            NombreCompleto = pNombre + " " + pApellido;
         }
 
         public override string ToString()
         {
-            return "Username: " + Username + "\nPassword: " + Password + "\nNombre completo: " + NombreCompleto;
+            return "Username: " + Username + "\nPassword: " + Password;
         }
     }
 }

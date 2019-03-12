@@ -118,7 +118,7 @@
                     </td>
             </tr>
             <tr>
-                <td class="style14">
+                <td class="style19">
                     <asp:Label ID="Label3" runat="server" Text="Apellido:"></asp:Label>
                 </td>
                 <td class="style18">
@@ -127,21 +127,8 @@
                         ControlToValidate="txtApellido" ErrorMessage="*" ForeColor="Red" 
                         ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
-                <td class="style16">
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="style14">
-                    <asp:Label ID="Label4" runat="server" Text="Nombre completo:"></asp:Label>
-                </td>
-                <td class="style18">
-                    <asp:TextBox ID="txtNCompleto" runat="server" Enabled="False"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
-                        ControlToValidate="txtNCompleto" ErrorMessage="*" ForeColor="Red" 
-                        ValidationGroup="A"></asp:RequiredFieldValidator>
-                </td>
-                <td class="style16">
-                    &nbsp;</td>
+                <td class="style13">
+                    </td>
             </tr>
             <tr>
                 <td class="style14">

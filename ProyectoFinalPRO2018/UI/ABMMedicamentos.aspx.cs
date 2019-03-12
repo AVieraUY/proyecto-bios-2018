@@ -61,6 +61,8 @@ public partial class ABMMedicamentos : System.Web.UI.Page
         lblError.Text = string.Empty;
         try
         {
+            if (txtRuc.Text.Length != 12)
+              throw new Exception("Ingrese un Rut valido");
             Farmaceutica f = negFarmaceutica.Buscar(Convert.ToInt64(txtRuc.Text));
 
             Medicamento m = negMedicamento.Buscar(f, Convert.ToInt32(txtCodigo.Text));

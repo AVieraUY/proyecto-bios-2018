@@ -94,7 +94,7 @@ namespace EntidadesCompartidas
 
         public override string ToString()
         {
-            return "Medicamento: " + Medicamento.Nombre + "\nCliente: " + Cliente.NombreCompleto + "\nMedicamento: " + Codigo + "\nCantidad: " + Cantidad + "\nEstado: " + Estado;
+            return "Medicamento: " + Medicamento.Nombre + "\nCliente: " + Cliente.Nombre +" "+Cliente.Apellido+ "\nMedicamento: " + Codigo + "\nCantidad: " + Cantidad + "\nEstado: " + Estado;
         }
     }
 }

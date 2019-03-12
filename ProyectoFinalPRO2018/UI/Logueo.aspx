@@ -124,7 +124,7 @@
                         <th class="style10">
                             <asp:Label ID="lblPassword0" runat="server" Text="Password"></asp:Label>
                         &nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
                         </th>
                         <th class="style5">
