@@ -32,6 +32,7 @@ public partial class ListadoMedyPed : System.Web.UI.Page
     {
         try
         {
+            GridView1.Visible = false;
             ddlEstado.Visible = false;
             Farmaceutica f = negFarmaceutica.Buscar(Convert.ToInt64(ddl.SelectedValue));
             Session["farmaceutica"] = f;
@@ -50,6 +51,7 @@ public partial class ListadoMedyPed : System.Web.UI.Page
     {
         try
         {
+            GridView1.Visible = true;
             ddlEstado.SelectedIndex = 0;
             lblError.Text = string.Empty;
             Farmaceutica f = (Farmaceutica)Session["farmaceutica"];
@@ -58,9 +60,12 @@ public partial class ListadoMedyPed : System.Web.UI.Page
             Session["m"] = m;
             GridView1.DataSource = negPedido.ListarPorMedicamento(m, "Todos");
             GridView1.DataBind();
-            if (negPedido.ListarPorMedicamento(m, "Todos").Count == 0)
-                throw new Exception("No se encontraron pedidos de este medicamento");
             ddlEstado.Visible = true;
+            if (negPedido.ListarPorMedicamento(m, "Todos").Count == 0)
+            {
+                ddlEstado.Visible = false;
+                throw new Exception("No se encontraron pedidos de este medicamento");
+            }
 
 
         }
